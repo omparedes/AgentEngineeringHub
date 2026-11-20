@@ -1,0 +1,26 @@
+id: "business-discovery"
+name: "Descubrimiento de negocio"
+activate_when: "El entregable es un análisis de negocio antes de fijar implementación."
+stack: ["business"]
+conditions: {}
+choices:
+  - id: "descubrimiento"
+    level: "essential"
+    when: []
+    reason: "Entregar requisitos con fuente y criterio de aceptación."
+  - id: "domain-discovery"
+    level: "essential"
+    when: []
+    reason: "Estructurar actores, flujo normal y excepciones."
+  - id: "project-bootstrap"
+    level: "optional"
+    when: []
+    reason: "Preparar una propuesta si después se incorpora un proyecto."
+  - id: "github-mcp"
+    level: "not-applicable"
+    when: []
+    reason: "Las fuentes de negocio suministradas bastan para el descubrimiento."
+  - id: "supabase-mcp"
+    level: "not-applicable"
+    when: []
+    reason: "La consulta del dominio no requiere datos de producción."

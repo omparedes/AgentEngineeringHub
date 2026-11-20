@@ -1,0 +1,30 @@
+id: "project-bootstrap"
+name: "Arranque de proyecto"
+summary: "Elige capacidades mínimas según stack, fase e inventario local."
+type: "skill"
+origin: "hub"
+provider: "Agent Engineering Hub"
+license: "MIT"
+entry: "skills/project-bootstrap/SKILL.md"
+integration: "Agent Skills"
+technologies: ["agent-skills"]
+requires_stack: []
+use_cases: ["Formular una propuesta inicial a partir de un perfil."]
+requirements: ["Checkout legible del Hub para consultar perfiles y fichas."]
+setup:
+  scope: "project"
+  method: "Copiar el directorio que contiene SKILL.md al proyecto destino sólo a petición explícita."
+agents: ["codex","antigravity"]
+compatibility: "Procedimiento textual portable; la invocación se describe por cliente."
+permissions: "Lectura de material autorizado y propuesta o documento solicitado."
+alternative: "Aplicar el procedimiento de forma manual."
+depends_on: []
+conflicts_with: []
+review:
+  status: "local"
+  reference: "0.1.0"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "tested"
+  evidence: "Ensayo de lectura explícita de la skill con un agente Codex en el escenario de RPC de examples/escenarios.md. Tras precisar la condición hosting, el segundo ensayo seleccionó las cinco capacidades esperadas y propuso probar el cliente antiguo."
+  pending: ["Descubrimiento automático en un proyecto de destino y ensayo interactivo en Antigravity."]

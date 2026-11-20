@@ -1,0 +1,34 @@
+id: "codex-skill-installer"
+name: "Codex Skill Installer"
+summary: "Skill de sistema para listar e instalar skills desde fuentes seleccionadas."
+type: "skill"
+origin: "official"
+provider: "OpenAI"
+license: "Apache-2.0 en la copia de sistema inspeccionada."
+repository: "https://github.com/openai/skills"
+docs: "https://github.com/openai/skills"
+integration: "Skill del sistema Codex"
+technologies: ["codex","agent-skills"]
+requires_stack: []
+use_cases: ["Distinguir la instalación personal del intercambio de una skill en un proyecto."]
+requirements: ["Codex con skill-installer, red y autorización de escritura en el destino personal."]
+setup:
+  scope: "user"
+  method: "Consultar $skill-installer sólo al solicitar una instalación personal. Su destino habitual es $CODEX_HOME/skills; este Hub usa copia explícita por proyecto."
+agents: ["codex"]
+compatibility: "Superficie específica de Codex."
+permissions: "Descarga instrucciones externas y puede modificar el entorno de usuario. El repositorio público openai/skills se declara obsoleto."
+alternative: "Copiar una carpeta revisada a .agents/skills/ del proyecto."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-06-24"
+  reference: "49f948faa9258a0c61caceaf225e179651397431"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "metadata-checked"
+  evidence: "README de openai/skills marcado como obsoleto; contrastado con SKILL.md y licencia de la skill integrada disponible localmente."
+  pending: ["Resultado de un ejercicio completo con modelo."]

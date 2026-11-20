@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ficha de capacidad",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "type": {
+      "enum": [
+        "skill",
+        "mcp",
+        "workflow",
+        "tool",
+        "plugin",
+        "rule"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "official",
+        "community",
+        "hub"
+      ]
+    },
+    "provider": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^https://[^\\s/]+/[^\\s]*$"
+    },
+    "docs": {
+      "type": "string",
+      "pattern": "^https://[^\\s/]+/[^\\s]*$"
+    },
+    "entry": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[a-zA-Z0-9_./-]+$"
+    },
+    "integration": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "technologies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "requires_stack": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "use_cases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "setup": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "enum": [
+            "project",
+            "user",
+            "bundled",
+            "none"
+          ]
+        },
+        "method": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "scope",
+        "method"
+      ],
+      "additionalProperties": false
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "codex",
+          "antigravity"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "compatibility": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "permissions": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "alternative": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "conflicts_with": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 64,
+        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "documented",
+            "pending",
+            "local"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "upstream": {
+          "type": "object",
+          "properties": {
+            "archived": { "type": "boolean" },
+            "commit_date_utc": { "type": "string", "format": "date" }
+          },
+          "required": ["archived", "commit_date_utc"],
+          "additionalProperties": false
+        },
+        "interval_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "runtime": {
+          "enum": [
+            "untested",
+            "metadata-checked",
+            "cli-help-checked",
+            "tested"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "pending": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "status",
+        "reference",
+        "date",
+        "interval_days",
+        "runtime",
+        "evidence",
+        "pending"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "summary",
+    "type",
+    "origin",
+    "provider",
+    "license",
+    "integration",
+    "technologies",
+    "requires_stack",
+    "use_cases",
+    "requirements",
+    "setup",
+    "agents",
+    "compatibility",
+    "permissions",
+    "alternative",
+    "depends_on",
+    "conflicts_with",
+    "review"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "origin": {
+            "const": "hub"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "entry"
+        ]
+      },
+      "else": {
+        "required": [
+          "repository",
+          "docs"
+        ]
+      }
+    }
+  ]
+}

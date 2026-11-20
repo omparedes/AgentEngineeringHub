@@ -1,0 +1,4 @@
+# POSIX, desde la raíz del proyecto Angular. Requiere el CLI local instalado.
+[mcp_servers.angular_workspace]
+command = "./node_modules/.bin/ng"
+args = ["mcp", "--read-only", "--local-only"]

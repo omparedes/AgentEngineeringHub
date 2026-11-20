@@ -1,0 +1,34 @@
+id: "angular-skills"
+name: "Angular Agent Skills"
+summary: "Instrucciones para desarrollo Angular y creación de aplicaciones con Angular CLI."
+type: "skill"
+origin: "official"
+provider: "Equipo Angular"
+license: "MIT, declarada en el frontmatter de angular-developer y angular-new-app."
+repository: "https://github.com/angular/skills"
+docs: "https://angular.dev/ai/agent-skills"
+integration: "Agent Skills por proyecto"
+technologies: ["angular","typescript"]
+requires_stack: ["angular"]
+use_cases: ["Revisar signals, formularios e inyección de dependencias en un componente."]
+requirements: ["Versión real de Angular identificada en el lockfile."]
+setup:
+  scope: "project"
+  method: "Copiar angular-developer desde la referencia examinada; elegir angular-new-app sólo para crear una aplicación."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por formato Agent Skills. Revisar herramientas auxiliares para el cliente elegido."
+permissions: "angular-new-app declara Node, npm y acceso a internet para crear una aplicación. Para una revisión local usar angular-developer y contrastar las APIs con el lockfile."
+alternative: "Guía oficial de Angular en la versión del proyecto."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-20"
+  reference: "2f2b8d08818b050baaf2d0f7f2b97594f50e4f30"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "metadata-checked"
+  evidence: "README, BUILD_INFO y frontmatter de ambas skills en el commit indicado; ambas declaran versión de skill 1.0. Angular publica aquí desde angular/angular."
+  pending: ["Validar las recomendaciones contra una aplicación fijada a Angular 22.","Prueba funcional por cliente, versión y sistema operativo."]

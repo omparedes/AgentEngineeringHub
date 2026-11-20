@@ -1,0 +1,34 @@
+id: "supabase-mcp"
+name: "Supabase MCP"
+summary: "Consulta documentación y puede operar sobre proyectos a través del servicio alojado."
+type: "mcp"
+origin: "official"
+provider: "Supabase"
+license: "Apache-2.0 (implementación)."
+repository: "https://github.com/supabase/mcp"
+docs: "https://supabase.com/docs/guides/ai-tools/mcp"
+integration: "MCP HTTP"
+technologies: ["supabase","postgresql","auth","rls","rpc"]
+requires_stack: ["supabase"]
+use_cases: ["Contrastar un esquema de desarrollo con una migración local autorizada."]
+requirements: ["Cliente MCP HTTP y autorización de un proyecto de desarrollo."]
+setup:
+  scope: "project"
+  method: "Registrar el endpoint alojado por proyecto. Fijar project_ref, read_only=true y los grupos features necesarios; autorizar por OAuth."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
+permissions: "La lectura puede exponer filas y logs. Limitar también el grupo de herramientas y el proyecto."
+alternative: "Migraciones versionadas, fixtures y documentación exportada."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-19"
+  reference: "43fc508e1ff1315eabbdea435e756df74545720e"
+  date: "2026-11-19"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  pending: ["Prueba funcional por cliente, versión y sistema operativo."]

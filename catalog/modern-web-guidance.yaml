@@ -1,0 +1,34 @@
+id: "modern-web-guidance"
+name: "Google Modern Web Guidance"
+summary: "Selección de guías para implementar APIs web, accesibilidad y rendimiento."
+type: "skill"
+origin: "official"
+provider: "Google Chrome y colaboradores"
+license: "Apache-2.0 para código; CC BY 4.0 para guías, con excepciones indicadas en origen."
+repository: "https://github.com/GoogleChrome/modern-web-guidance"
+docs: "https://developer.chrome.com/docs/modern-web-guidance"
+integration: "Agent Skills por proyecto"
+technologies: ["web","html","css","javascript"]
+requires_stack: ["web"]
+use_cases: ["Elegir una API compatible con los navegadores objetivo."]
+requirements: ["Agente con Agent Skills; revisar requisitos Node del buscador incluido."]
+setup:
+  scope: "project"
+  method: "Seleccionar el directorio modern-web-guidance en la colección revisada y sus recursos. El proveedor también ofrece paquetes y un instalador."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por formato Agent Skills. Revisar herramientas auxiliares para el cliente elegido."
+permissions: "El buscador puede emitir telemetría de consultas; revisar DISABLE_TELEMETRY y scripts antes de usarlo."
+alternative: "MDN y web.dev consultados manualmente."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-16"
+  reference: "64a6d708f5a43f2cd3fde5d4d7db3905ba1bdf65"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  pending: ["Prueba funcional por cliente, versión y sistema operativo."]

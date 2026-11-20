@@ -1,0 +1,34 @@
+id: "codex-skill-creator"
+name: "Codex Skill Creator"
+summary: "Skill integrada para diseñar, revisar y validar skills."
+type: "skill"
+origin: "official"
+provider: "OpenAI"
+license: "Apache-2.0 en la copia de sistema inspeccionada."
+repository: "https://github.com/openai/skills"
+docs: "https://learn.chatgpt.com/docs/build-skills"
+integration: "Skill del sistema Codex"
+technologies: ["codex","agent-skills"]
+requires_stack: []
+use_cases: ["Afinar el disparador y revisar el frontmatter de una skill propia."]
+requirements: ["Codex con skill-creator disponible; Python para su validador."]
+setup:
+  scope: "bundled"
+  method: "Invocar $skill-creator en Codex y especificar una ruta del proyecto para el resultado."
+agents: ["codex"]
+compatibility: "Superficie específica de Codex."
+permissions: "Puede escribir en el destino solicitado. Revisar ejemplos y alcance de la skill generada."
+alternative: "Especificación Agent Skills y validador local del Hub."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-06-24"
+  reference: "49f948faa9258a0c61caceaf225e179651397431"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "metadata-checked"
+  evidence: "README de openai/skills marcado como obsoleto; contrastado con SKILL.md y licencia de la skill integrada disponible localmente."
+  pending: ["Resultado de un ejercicio completo con modelo."]

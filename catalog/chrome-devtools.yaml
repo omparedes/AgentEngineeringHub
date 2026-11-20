@@ -1,0 +1,34 @@
+id: "chrome-devtools"
+name: "Chrome DevTools for Agents"
+summary: "Instrumenta Chrome para inspeccionar red, consola y trazas; el producto también distribuye CLI y skills."
+type: "mcp"
+origin: "official"
+provider: "Chrome DevTools"
+license: "Apache-2.0"
+repository: "https://github.com/ChromeDevTools/chrome-devtools-mcp"
+docs: "https://developer.chrome.com/docs/devtools/agents"
+integration: "MCP stdio"
+technologies: ["web","chrome","javascript"]
+requires_stack: ["web"]
+use_cases: ["Diagnosticar recursos lentos con un perfil de navegador de prueba."]
+requirements: ["Chrome compatible y Node LTS para el servidor npm."]
+setup:
+  scope: "project"
+  method: "Añadir chrome-devtools-mcp con versión revisada como dependencia de desarrollo del proyecto y configurar su binario en stdio."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
+permissions: "El navegador puede revelar cookies, peticiones y contenido privado. Usar perfil aislado y revisar telemetría."
+alternative: "Panel Performance y Network de Chrome DevTools."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-19"
+  reference: "bdecb63549a0b1a6d073fdf69ecc264bf46adda9"
+  date: "2026-11-19"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  pending: ["Prueba funcional por cliente, versión y sistema operativo."]

@@ -1,0 +1,30 @@
+id: "descubrimiento"
+name: "Del proceso al requisito"
+summary: "Conduce el descubrimiento hasta criterios revisables."
+type: "workflow"
+origin: "hub"
+provider: "Agent Engineering Hub"
+license: "MIT"
+entry: "workflows/descubrimiento.md"
+integration: "Procedimiento Markdown"
+technologies: ["engineering"]
+requires_stack: []
+use_cases: ["Preparar una decisión de alcance."]
+requirements: ["Ficha de dominio o fuentes para completarla."]
+setup:
+  scope: "none"
+  method: "Leer el workflow desde la ficha."
+agents: ["codex","antigravity"]
+compatibility: "Procedimiento textual portable; la invocación se describe por cliente."
+permissions: "Lectura de material autorizado y propuesta o documento solicitado."
+alternative: "Usar la plantilla del Hub en una revisión manual."
+depends_on: ["domain-discovery"]
+conflicts_with: []
+review:
+  status: "local"
+  reference: "0.1.0"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "Entrada local incluida en el Hub; verificación estructural por la suite."
+  pending: ["Evaluación de resultados con ambos clientes."]

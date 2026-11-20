@@ -1,0 +1,46 @@
+id: "generic-web"
+name: "Aplicación web"
+activate_when: "La aplicación utiliza la plataforma web y no precisa un perfil más específico."
+stack: ["web","html","css","javascript"]
+conditions:
+  reglas-abiertas: "Hay una regla de negocio sin confirmar."
+  cambio-existente: "La petición modifica comportamiento ya utilizado."
+  medir-web: "Hay una página de prueba y una pregunta de rendimiento."
+  prueba-navegacion: "Hay un flujo de prueba local que requiere interacción."
+choices:
+  - id: "project-bootstrap"
+    level: "essential"
+    when: []
+    reason: "Inventariar capacidades existentes antes de proponer incorporaciones."
+  - id: "modern-web-guidance"
+    level: "recommended"
+    when: []
+    reason: "Seleccionar APIs y revisar compatibilidad web."
+  - id: "descubrimiento"
+    level: "recommended"
+    when: ["reglas-abiertas"]
+    reason: "Precisar reglas de negocio antes del diseño."
+  - id: "domain-discovery"
+    level: "recommended"
+    when: ["reglas-abiertas"]
+    reason: "Relacionar reglas y fuentes disponibles."
+  - id: "cambio-controlado"
+    level: "recommended"
+    when: ["cambio-existente"]
+    reason: "Coordinar pruebas y reversión de una aplicación existente."
+  - id: "change-impact-analysis"
+    level: "recommended"
+    when: ["cambio-existente"]
+    reason: "Identificar consumidores y contratos afectados."
+  - id: "chrome-devtools"
+    level: "optional"
+    when: ["medir-web"]
+    reason: "Inspeccionar una traza sólo cuando exista una página que medir."
+  - id: "playwright-mcp"
+    level: "optional"
+    when: ["prueba-navegacion"]
+    reason: "Explorar un recorrido con datos sintéticos."
+  - id: "angular-cli-mcp"
+    level: "not-applicable"
+    when: []
+    reason: "No se ha identificado un workspace Angular."

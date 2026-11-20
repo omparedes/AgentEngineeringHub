@@ -1,0 +1,30 @@
+id: "domain-discovery"
+name: "Descubrimiento del dominio"
+summary: "Reconstruye actores, procesos y reglas a partir de evidencia."
+type: "skill"
+origin: "hub"
+provider: "Agent Engineering Hub"
+license: "MIT"
+entry: "skills/domain-discovery/SKILL.md"
+integration: "Agent Skills"
+technologies: ["agent-skills"]
+requires_stack: []
+use_cases: ["Definir requisitos verificables antes de diseñar."]
+requirements: ["Fuentes de negocio identificables o preguntas abiertas."]
+setup:
+  scope: "project"
+  method: "Copiar el directorio que contiene SKILL.md al proyecto destino sólo a petición explícita."
+agents: ["codex","antigravity"]
+compatibility: "Procedimiento textual portable; la invocación se describe por cliente."
+permissions: "Lectura de material autorizado y propuesta o documento solicitado."
+alternative: "Aplicar el procedimiento de forma manual."
+depends_on: []
+conflicts_with: []
+review:
+  status: "local"
+  reference: "0.1.0"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "metadata-checked"
+  evidence: "Entrada local incluida en el Hub; verificación estructural por la suite."
+  pending: ["Evaluación de resultados con ambos clientes."]

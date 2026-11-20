@@ -1,0 +1,34 @@
+id: "cloudflare-skills"
+name: "Cloudflare Skills"
+summary: "Guías por producto para elegir servicios y trabajar con el entorno Cloudflare."
+type: "skill"
+origin: "official"
+provider: "Cloudflare"
+license: "Apache-2.0"
+repository: "https://github.com/cloudflare/skills"
+docs: "https://github.com/cloudflare/skills"
+integration: "Agent Skills por proyecto"
+technologies: ["cloudflare","workers","pages"]
+requires_stack: ["cloudflare"]
+use_cases: ["Comprobar si una aplicación necesita Workers además de Pages."]
+requirements: ["Identificar el producto exacto y sus límites."]
+setup:
+  scope: "project"
+  method: "Elegir una carpeta de skill del repositorio revisado y copiarla al proyecto. La distribución mediante plugin puede añadir MCP."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por formato Agent Skills. Revisar herramientas auxiliares para el cliente elegido."
+permissions: "Algunas guías proponen usar CLI con permisos de despliegue; revisar los pasos por separado."
+alternative: "Guías de Pages o Workers según el producto."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-17"
+  reference: "5108325ecceabc899c761e07aa617b09c02445ee"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  pending: ["Prueba funcional por cliente, versión y sistema operativo."]

@@ -1,0 +1,34 @@
+id: "angular-cli-mcp"
+name: "Angular CLI MCP"
+summary: "Expone inspección del workspace, buenas prácticas y herramientas de Angular CLI."
+type: "mcp"
+origin: "official"
+provider: "Equipo Angular"
+license: "MIT"
+repository: "https://github.com/angular/angular-cli"
+docs: "https://angular.dev/ai/mcp"
+integration: "MCP stdio"
+technologies: ["angular","typescript"]
+requires_stack: ["angular"]
+use_cases: ["Consultar los proyectos de angular.json desde un agente."]
+requirements: ["Node compatible con el workspace y @angular/cli instalado en el proyecto."]
+setup:
+  scope: "project"
+  method: "Registrar el binario ng del proyecto con los argumentos mcp --read-only --local-only por stdio."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
+permissions: "Puede leer el workspace. Otros modos habilitan red o modificaciones."
+alternative: "ng y angular.json consultados localmente."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-19"
+  reference: "815c98e07a99f7f52958ce650b16ec1dbf2cd908"
+  date: "2026-11-19"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  pending: ["Prueba funcional por cliente, versión y sistema operativo."]

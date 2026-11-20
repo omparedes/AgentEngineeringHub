@@ -1,0 +1,4 @@
+# Ejemplo inerte para la configuración Codex del proyecto de desarrollo.
+# Reemplazar PROJECT_REF localmente tras revisar el alcance.
+[mcp_servers.supabase_dev_readonly]
+url = "https://mcp.supabase.com/mcp?project_ref=PROJECT_REF&read_only=true&features=database"

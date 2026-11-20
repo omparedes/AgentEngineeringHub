@@ -1,0 +1,34 @@
+id: "context7"
+name: "Context7 MCP"
+summary: "Recupera documentación y ejemplos de librerías a petición del agente."
+type: "mcp"
+origin: "official"
+provider: "Upstash"
+license: "MIT para el repositorio; el backend alojado es privado."
+repository: "https://github.com/upstash/context7"
+docs: "https://github.com/upstash/context7"
+integration: "MCP HTTP"
+technologies: ["documentation","python","typescript","javascript"]
+requires_stack: []
+use_cases: ["Resolver una duda sobre la versión de una biblioteca cuando la referencia local es insuficiente."]
+requirements: ["Cliente MCP HTTP, acceso al servicio y autenticación según modalidad."]
+setup:
+  scope: "project"
+  method: "Registrar https://mcp.context7.com/mcp en el proyecto; aportar la credencial desde el almacén del cliente."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
+permissions: "La consulta sale del equipo. Usar sólo nombres de bibliotecas y preguntas saneadas; verificar ejemplos con upstream."
+alternative: "Documentación versionada del propio proveedor."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-19"
+  reference: "f1872ebb2f3d943b293bb86fdc0c2905988820d9"
+  date: "2026-11-19"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  pending: ["Prueba funcional por cliente, versión y sistema operativo."]

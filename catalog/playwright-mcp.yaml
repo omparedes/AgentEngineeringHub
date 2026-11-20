@@ -1,0 +1,34 @@
+id: "playwright-mcp"
+name: "Microsoft Playwright MCP"
+summary: "Automatización interactiva por snapshots de accesibilidad y acciones de navegador."
+type: "mcp"
+origin: "official"
+provider: "Microsoft"
+license: "Apache-2.0"
+repository: "https://github.com/microsoft/playwright-mcp"
+docs: "https://github.com/microsoft/playwright-mcp"
+integration: "MCP stdio"
+technologies: ["web","playwright","testing"]
+requires_stack: ["web"]
+use_cases: ["Recorrer un formulario en un servidor local con datos sintéticos."]
+requirements: ["Node.js 20+ según el README y navegador compatible."]
+setup:
+  scope: "project"
+  method: "Instalar @playwright/mcp en versión revisada dentro del proyecto y registrar su binario con --isolated por stdio."
+agents: ["codex","antigravity"]
+compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
+permissions: "Puede navegar, enviar formularios y leer su contenido. Usar perfil efímero con origen de prueba."
+alternative: "Suite Playwright Test existente para regresiones repetibles."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-18"
+  reference: "2337aff0213d28db41d3e3daf48cee19b3d0bd82"
+  date: "2026-11-19"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  pending: ["Prueba funcional por cliente, versión y sistema operativo."]

@@ -1,0 +1,46 @@
+id: "angular-frontend"
+name: "Frontend Angular"
+activate_when: "El entregable es una interfaz Angular con manifiesto o stack acordado."
+stack: ["angular","typescript","web"]
+conditions:
+  reglas-abiertas: "Hay una regla de negocio sin confirmar."
+  cambio-existente: "La petición modifica comportamiento ya utilizado."
+  medir-web: "Hay una página de prueba y una pregunta de rendimiento."
+  inspeccion-cli: "Es necesario consultar el workspace de Angular CLI."
+choices:
+  - id: "project-bootstrap"
+    level: "essential"
+    when: []
+    reason: "Inventariar capacidades existentes antes de proponer incorporaciones."
+  - id: "angular-skills"
+    level: "recommended"
+    when: []
+    reason: "Revisar patrones Angular contra la versión fijada en el proyecto."
+  - id: "descubrimiento"
+    level: "recommended"
+    when: ["reglas-abiertas"]
+    reason: "Precisar reglas de negocio antes del diseño."
+  - id: "domain-discovery"
+    level: "recommended"
+    when: ["reglas-abiertas"]
+    reason: "Relacionar reglas y fuentes disponibles."
+  - id: "cambio-controlado"
+    level: "recommended"
+    when: ["cambio-existente"]
+    reason: "Coordinar pruebas y reversión de una aplicación existente."
+  - id: "change-impact-analysis"
+    level: "recommended"
+    when: ["cambio-existente"]
+    reason: "Identificar consumidores y contratos afectados."
+  - id: "chrome-devtools"
+    level: "optional"
+    when: ["medir-web"]
+    reason: "Inspeccionar una traza sólo cuando exista una página que medir."
+  - id: "angular-cli-mcp"
+    level: "optional"
+    when: ["inspeccion-cli"]
+    reason: "Aprovechar el CLI local para inspección de sólo lectura."
+  - id: "supabase-mcp"
+    level: "not-applicable"
+    when: []
+    reason: "El perfil de frontend carece de un proyecto Supabase identificado."

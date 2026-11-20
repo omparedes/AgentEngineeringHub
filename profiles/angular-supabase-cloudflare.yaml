@@ -1,0 +1,56 @@
+id: "angular-supabase-cloudflare"
+name: "Aplicación Angular con Supabase y Cloudflare"
+activate_when: "Se han identificado Angular, Supabase y Cloudflare como stack del proyecto."
+stack: ["angular","typescript","web","supabase","postgresql","cloudflare","pages"]
+conditions:
+  reglas-abiertas: "Hay una regla de negocio sin confirmar."
+  cambio-existente: "La petición modifica comportamiento ya utilizado."
+  medir-web: "Hay una página de prueba y una pregunta de rendimiento."
+  cambio-sql: "El alcance incluye SQL, RLS o una RPC."
+  hosting: "Hay una decisión concreta de alojamiento."
+  inspeccion-remota: "El inventario local es insuficiente y hay un proyecto de prueba previsto."
+choices:
+  - id: "project-bootstrap"
+    level: "essential"
+    when: []
+    reason: "Inventariar capacidades existentes antes de proponer incorporaciones."
+  - id: "angular-skills"
+    level: "recommended"
+    when: []
+    reason: "Revisar patrones Angular contra la versión fijada en el proyecto."
+  - id: "descubrimiento"
+    level: "recommended"
+    when: ["reglas-abiertas"]
+    reason: "Precisar reglas de negocio antes del diseño."
+  - id: "domain-discovery"
+    level: "recommended"
+    when: ["reglas-abiertas"]
+    reason: "Relacionar reglas y fuentes disponibles."
+  - id: "change-impact-analysis"
+    level: "recommended"
+    when: ["cambio-existente"]
+    reason: "Identificar consumidores y contratos afectados."
+  - id: "cambio-controlado"
+    level: "recommended"
+    when: ["cambio-existente"]
+    reason: "Coordinar pruebas y reversión de una aplicación existente."
+  - id: "supabase-skills"
+    level: "recommended"
+    when: ["cambio-sql"]
+    reason: "Revisar migraciones y políticas desde archivos locales."
+  - id: "cloudflare-skills"
+    level: "recommended"
+    when: ["hosting"]
+    reason: "Delimitar Pages y servicios adicionales sólo al decidir el alojamiento."
+  - id: "supabase-mcp"
+    level: "optional"
+    when: ["inspeccion-remota"]
+    reason: "Contrastar el esquema remoto en desarrollo con alcance restringido."
+  - id: "chrome-devtools"
+    level: "optional"
+    when: ["medir-web"]
+    reason: "Inspeccionar una traza sólo cuando exista una página que medir."
+  - id: "cloudflare-mcp"
+    level: "optional"
+    when: ["hosting"]
+    reason: "Consultar documentación de plataforma para una decisión de hosting."

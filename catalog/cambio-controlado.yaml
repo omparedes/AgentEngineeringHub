@@ -1,0 +1,30 @@
+id: "cambio-controlado"
+name: "Cambio controlado"
+summary: "Conecta un análisis de impacto con pruebas y decisión de despliegue."
+type: "workflow"
+origin: "hub"
+provider: "Agent Engineering Hub"
+license: "MIT"
+entry: "workflows/cambio-controlado.md"
+integration: "Procedimiento Markdown"
+technologies: ["engineering"]
+requires_stack: []
+use_cases: ["Planificar la convivencia entre clientes antiguos y nuevos."]
+requirements: ["Versión de partida y entorno de ensayo."]
+setup:
+  scope: "none"
+  method: "Leer el workflow desde la ficha."
+agents: ["codex","antigravity"]
+compatibility: "Procedimiento textual portable; la invocación se describe por cliente."
+permissions: "Lectura de material autorizado y propuesta o documento solicitado."
+alternative: "Usar la plantilla del Hub en una revisión manual."
+depends_on: ["change-impact-analysis"]
+conflicts_with: []
+review:
+  status: "local"
+  reference: "0.1.0"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "Entrada local incluida en el Hub; verificación estructural por la suite."
+  pending: ["Evaluación de resultados con ambos clientes."]

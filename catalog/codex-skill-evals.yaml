@@ -1,0 +1,34 @@
+id: "codex-skill-evals"
+name: "Codex CLI para evaluación de skills"
+summary: "Produce eventos JSONL para comparar activación, decisiones y artefactos con una rúbrica."
+type: "tool"
+origin: "official"
+provider: "OpenAI"
+license: "Apache-2.0 para Codex CLI."
+repository: "https://github.com/openai/codex"
+docs: "https://developers.openai.com/blog/eval-skills"
+integration: "CLI y salida JSONL"
+technologies: ["codex","testing","agent-skills"]
+requires_stack: []
+use_cases: ["Evaluar si una propuesta de bootstrap evita instalar herramientas."]
+requirements: ["Codex CLI autorizado; directorio de prueba, prompt sintético y rúbrica."]
+setup:
+  scope: "none"
+  method: "Usar la CLI ya disponible y ejecutar codex exec --json en una evaluación aislada y autorizada."
+agents: ["codex"]
+compatibility: "Superficie específica de Codex."
+permissions: "La inferencia puede enviar contexto, consumir cuota y generar registros sensibles."
+alternative: "Evaluación manual con la misma entrada y criterios observables."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-20"
+  reference: "583ec348cf9007361d09513c716549c41d4d8128"
+  date: "2026-11-19"
+  interval_days: 90
+  runtime: "cli-help-checked"
+  evidence: "Guía oficial de evaluación y ayuda local de codex exec, CLI 0.169.1; opción --json presente."
+  pending: ["Resultado de un ejercicio completo con modelo."]
