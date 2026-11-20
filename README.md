@@ -1,6 +1,6 @@
 # Agent Engineering Hub
 
-Biblioteca de ingeniería para equipos que desarrollan con agentes. La versión **0.1.0** permite pasar de una necesidad concreta a una propuesta de skills, herramientas y procedimientos con dependencias, permisos y fuentes revisables. Funciona en un checkout local con Codex o Antigravity.
+Biblioteca de ingeniería para equipos que desarrollan con agentes. La versión **0.1.0** permite pasar de una necesidad concreta a una propuesta de skills, herramientas y procedimientos con dependencias, permisos y fuentes revisables. La CLI funciona sobre un checkout local y las skills usan el formato de descubrimiento por proyecto de Codex y Antigravity.
 
 **English overview.** Use this repository to discover capabilities, compare their permissions, and select a minimal set for a project. The CLI works offline after its Python dependencies are available. Start with the [quick start](docs/inicio-rapido.md) and [worked examples](examples/escenarios.md).
 
@@ -30,6 +30,7 @@ La primera orden comprueba **20 capacidades, cinco perfiles y cuatro skills prop
 | Validar, contribuir o evaluar riesgos | [Pruebas](docs/pruebas.md) · [contribuciones](CONTRIBUTING.md) · [seguridad](SECURITY.md) |
 | Consultar próximos hitos | [Roadmap](docs/roadmap.md) |
 | Revisar la entrega 0.1.0 | [Inventario, resultados y limitaciones](docs/informe-0.1.0.md) |
+| Repetir las pruebas desde un proyecto consumidor | [Protocolo de aceptación](docs/aceptacion-consumidores.md) · [Auditoría de 0.1.0](docs/auditoria-aceptacion-0.1.0.md) |
 
 Las skills originales cubren [arranque](skills/project-bootstrap/SKILL.md), [dominio](skills/domain-discovery/SKILL.md), [impacto](skills/change-impact-analysis/SKILL.md) y [mantenimiento](.agents/skills/hub-maintainer/SKILL.md). Los datos se pueden leer directamente como YAML o consultar por tipo, tecnología e ID. Consultar una ficha o elegir un perfil no instala nada.
 

@@ -302,6 +302,7 @@ def main(argv=None):
             selected, skipped = select(profile, caps, args.agent, args.context, args.include)
             rows = {row["id"]: row for row in profile["choices"]}
             print(f"Propuesta local | {args.profile} | {args.agent}")
+            print("Condiciones activas: " + (", ".join(sorted(set(args.context))) or "ninguna"))
             for key, reason in selected.items():
                 print(f"  + {key} [{LEVELS[rows[key]['level']]}] {reason}")
                 if caps[key]["requirements"]:

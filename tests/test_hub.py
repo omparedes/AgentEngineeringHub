@@ -187,6 +187,8 @@ class CatalogTests(unittest.TestCase):
                 (["profiles"], 0, "python-ai"),
                 (["show", "codex-skill-evals"], 0, "cli-help-checked"),
                 (["recommend", "generic-web", "--agent", "antigravity"], 0, "modern-web-guidance"),
+                (["recommend", "angular-supabase-cloudflare", "--context", "cambio-sql",
+                  "--context", "cambio-existente"], 0, "Condiciones activas: cambio-existente, cambio-sql"),
                 (["recommend", "ausente"], 1, "desconocido"),
             ]:
                 with self.subTest(args=args):
