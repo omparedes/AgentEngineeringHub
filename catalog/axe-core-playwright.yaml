@@ -1,0 +1,39 @@
+id: "axe-core-playwright"
+name: "axe-core + Playwright"
+summary: "Integra análisis axe-core en suites Playwright Test para detectar regresiones de accesibilidad."
+type: "tool"
+origin: "official"
+provider: "Deque Systems y Playwright"
+license: "MPL-2.0 para @axe-core/playwright según su manifiesto npm."
+repository: "https://github.com/dequelabs/axe-core-npm"
+docs: "https://playwright.dev/docs/accessibility-testing"
+entry: "docs/herramientas-ingenieria.md"
+integration: "Biblioteca de pruebas automatizadas de accesibilidad para páginas Playwright"
+technologies: ["web","accessibility","playwright","testing"]
+requires_stack: ["web"]
+use_cases:
+  - "Ejecutar AxeBuilder.analyze() cuando la vista o el diálogo esté en el estado que se quiere probar."
+  - "Registrar regla, nodos y estado evaluado en una regresión reproducible."
+requirements:
+  - "Node.js >=22.12.0 para @axe-core/playwright 4.14.0 según npm."
+  - "Playwright y navegador de pruebas disponibles. Usar las versiones compatibles fijadas por el proyecto."
+setup:
+  scope: "project"
+  method: "Fijar @axe-core/playwright como dependencia de desarrollo. Instanciar AxeBuilder con page en Playwright Test, limitar etiquetas o alcance si procede y asertar las violaciones."
+agents: ["codex","antigravity"]
+compatibility: "Codex y Antigravity pueden guiar la autoría de pruebas que ejecuta el runner del proyecto. Sin integración MCP."
+permissions: "Ejecuta la auditoría sobre el DOM de la sesión de prueba. Usa datos sintéticos y conserva los informes sensibles dentro del entorno autorizado."
+alternative: "Revisión manual con teclado, lector de pantalla, ampliación y criterios que requieren juicio. Úsala también junto a pruebas automáticas. Recomendar cuando exista alcance explícito de accesibilidad con Playwright Test utilizable. Una página estática puntual puede revisarse manualmente."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-18"
+  reference: "826915ad803d569f51fb754bb0597a00b23ac8ea"
+  date: "2026-11-23"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "Guía Playwright, README del adaptador en el commit indicado y manifiesto npm 4.14.0 consultados."
+  pending: ["Ejecución de una prueba en un proyecto consumidor sintético."]

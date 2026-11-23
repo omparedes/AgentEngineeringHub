@@ -1,21 +1,52 @@
 id: "generic-web"
 name: "Aplicación web"
-activate_when: "La aplicación utiliza la plataforma web y no precisa un perfil más específico."
+activate_when: "La aplicación utiliza la plataforma web y no precisa un perfil más específico, incluidos proyectos React y Next.js."
 stack: ["web","html","css","javascript"]
 conditions:
+  auditoria-accesibilidad: "Hay estados de interfaz que deben auditarse como regresión y se ha elegido Playwright Test."
+  presupuesto-lighthouse: "Hay páginas reproducibles y se acordó automatizar auditorías o presupuestos Lighthouse."
+  seguridad-aplicacion: "Hay una revisión de seguridad web basada en riesgo, por ejemplo por tratar datos sensibles o transacciones."
+  sentry-en-alcance: "El proyecto ya usa Sentry o ha acordado adoptarlo y la tarea requiere diagnóstico en esa plataforma."
+  diseno-figma: "La tarea requiere un diseño mantenido en Figma o un proceso de diseño que ha elegido Figma."
+  nextjs-16-dev: "El lockfile o instalación confirma Next.js 16 o posterior y el diagnóstico requiere un servidor next dev local."
   reglas-abiertas: "Hay una regla de negocio sin confirmar."
   cambio-existente: "La petición modifica comportamiento ya utilizado."
   medir-web: "Hay una página de prueba y una pregunta de rendimiento."
+  trabajo-frontend: "La tarea incluye HTML, CSS, APIs del navegador, accesibilidad, rendimiento de interfaz o modernización."
   prueba-navegacion: "Hay un flujo de prueba local que requiere interacción."
 choices:
+  - id: "axe-core-playwright"
+    level: "recommended"
+    when: ["auditoria-accesibilidad"]
+    reason: "Agregar comprobaciones de regresión de accesibilidad a la suite Playwright Test."
+  - id: "lighthouse-ci"
+    level: "recommended"
+    when: ["presupuesto-lighthouse"]
+    reason: "Medir páginas reproducibles y comprobar los presupuestos acordados de Lighthouse."
+  - id: "owasp-asvs"
+    level: "recommended"
+    when: ["seguridad-aplicacion"]
+    reason: "Traducir el riesgo de seguridad web a requisitos y evidencias ASVS versionados."
+  - id: "sentry-mcp"
+    level: "recommended"
+    when: ["sentry-en-alcance"]
+    reason: "Consultar eventos y trazas del proyecto autorizado cuando el diagnóstico lo requiera."
+  - id: "figma-mcp"
+    level: "recommended"
+    when: ["diseno-figma"]
+    reason: "Contrastar la implementación con componentes, variables y layout del diseño autorizado."
+  - id: "next-devtools-mcp"
+    level: "recommended"
+    when: ["nextjs-16-dev"]
+    reason: "Consultar errores, rutas y compilación de la instancia Next.js compatible."
   - id: "project-bootstrap"
     level: "essential"
     when: []
     reason: "Inventariar capacidades existentes antes de proponer incorporaciones."
   - id: "modern-web-guidance"
     level: "recommended"
-    when: []
-    reason: "Seleccionar APIs y revisar compatibilidad web."
+    when: ["trabajo-frontend"]
+    reason: "Orientar decisiones de interfaz y compatibilidad de la plataforma web con cualquier framework."
   - id: "descubrimiento"
     level: "recommended"
     when: ["reglas-abiertas"]

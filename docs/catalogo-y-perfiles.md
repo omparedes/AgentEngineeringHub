@@ -24,10 +24,10 @@ En las fichas externas iniciales, `review.upstream` conserva el indicador de arc
 
 | Perfil | Cuándo usarlo | Ejemplo de decisión |
 | --- | --- | --- |
-| angular-supabase-cloudflare | Stack de aplicación, datos y alojamiento confirmado | Con `cambio-sql`, añade revisión local de SQL. |
-| angular-frontend | Interfaz Angular | El MCP del CLI requiere `inspeccion-cli` y una petición de inclusión. |
+| angular-supabase-cloudflare | Stack de aplicación, datos y alojamiento confirmado | Usa `trabajo-frontend` para interfaz y `cambio-sql` para revisión local de SQL. |
+| angular-frontend | Interfaz Angular | `trabajo-frontend` sugiere Modern Web Guidance. El MCP del CLI requiere `inspeccion-cli` y una petición de inclusión. |
 | python-ai | Python para modelos, datos o evaluación | Context7 sólo si una duda se puede formular públicamente. |
-| generic-web | Se conoce la plataforma web sin stack más específico | Modern Web Guidance para APIs; navegador interactivo a demanda. |
+| generic-web | Plataforma web sin perfil más específico, incluidos React y Next.js | `trabajo-frontend` sugiere Modern Web Guidance. La navegación interactiva se incluye a demanda. |
 | business-discovery | Requisitos y reglas antes de fijar el stack | Devuelve skill de dominio y workflow; evita accesos de cuenta. |
 
 ## Semántica de selección
@@ -44,3 +44,7 @@ python scripts/hub.py recommend python-ai --agent antigravity
 ```
 
 En el primer caso aparece el CLI como opcional seleccionado. El segundo propone el arranque sin incorporar una herramienta Angular ni una consulta pública.
+
+La condición `trabajo-frontend` corresponde a tareas de interfaz, accesibilidad, compatibilidad, rendimiento web o modernización. Una decisión de hosting o una migración SQL por sí sola deja esa condición inactiva. [Modern Web Guidance](modern-web-guidance.md)
+
+Consulta los criterios de accesibilidad, Lighthouse, ASVS, Sentry, Figma y Next.js DevTools antes de activar sus contextos. `nextjs-16-dev` sólo existe en `generic-web` y requiere evidencia de la versión efectiva antes de recomendar el servidor. El Hub toma ese hecho del operador. [Herramientas y condiciones por fase](herramientas-ingenieria.md)

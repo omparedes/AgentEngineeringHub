@@ -1,0 +1,39 @@
+id: "sentry-mcp"
+name: "Sentry MCP"
+summary: "Consulta y correlaciona información de observabilidad para investigar errores y regresiones de un proyecto Sentry."
+type: "mcp"
+origin: "official"
+provider: "Sentry"
+license: "FSL-1.1-Apache-2.0 según LICENSE.md del repositorio toolkit examinado."
+repository: "https://github.com/getsentry/toolkit"
+docs: "https://mcp.sentry.dev/"
+entry: "docs/herramientas-ingenieria.md"
+integration: "MCP Streamable HTTP alojado o Sentry CLI por stdio"
+technologies: ["observability","sentry","errors","performance"]
+requires_stack: []
+use_cases:
+  - "Inspeccionar incidencias, stack traces o regresiones después de un despliegue de ensayo."
+  - "Acotar la investigación a proyecto e intervalo y registrar lo comprobado."
+requirements:
+  - "Proyecto Sentry existente o adopción acordada. Cliente con Streamable HTTP y OAuth para el servicio remoto."
+  - "Para stdio, Sentry CLI autenticado en el host correcto. El proveedor documenta esta modalidad para Sentry autogestionado."
+setup:
+  scope: "project"
+  method: "Limitar el endpoint alojado https://mcp.sentry.dev/mcp/{org}/{project} y autenticar por OAuth. Como alternativa, registrar sentry mcp con alcance de proyecto por stdio y la sesión autorizada del CLI."
+agents: ["codex","antigravity"]
+compatibility: "Codex y Antigravity son candidatos por transporte y autenticación. Verificación de OAuth y herramientas pendientes."
+permissions: "Eventos y trazas pueden incluir identificadores, código y datos personales. Restringir proyecto y herramientas de inspección. Algunas herramientas gestionan incidencias o configuración; cualquier escritura requiere autorización separada."
+alternative: "Dashboard de Sentry con acceso autorizado o logs locales saneados para una revisión puntual. Ofrecer sólo con observabilidad Sentry confirmada o adoptada. Antes de configurar el MCP, comprobar que la conexión al proyecto esté autorizada."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-23"
+  reference: "935859c4c74d5ca40adb136bfe6383ddb9695fee"
+  date: "2026-11-23"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "Documentación del MCP alojado, manual de sentry mcp, README y LICENSE.md del commit indicado consultados."
+  pending: ["Ensayo de alcance y negociación con cada cliente en un proyecto sintético."]

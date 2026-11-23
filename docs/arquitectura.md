@@ -19,10 +19,10 @@ Una ficha identifica una capacidad por su función. Un perfil expresa cuándo co
 | --- | --- | --- |
 | Agent Skill | Un directorio portable con metadatos de selección y un procedimiento en SKILL.md | domain-discovery |
 | Servidor MCP | Expone herramientas o recursos a un cliente mediante un transporte | Angular CLI por stdio |
-| Rule | Instrucciones permanentes con alcance de directorio o usuario | AGENTS.md del Hub |
+| Rule | Criterios documentales que orientan una decisión o una verificación | OWASP ASVS en el catálogo, AGENTS.md como instrucciones del Hub |
 | Workflow | Procedimiento humano o asistido con entrada, decisiones y evidencia de salida | Cambio controlado |
 | Project Profile | Reglas declarativas para elegir capacidades según stack y tarea | angular-frontend |
-| Herramienta de desarrollo | Ejecutable que realiza una operación concreta | Codex CLI en una evaluación |
+| Herramienta de desarrollo | Ejecutable o biblioteca que realiza una operación concreta | Lighthouse CI para presupuestos, axe-core + Playwright para regresiones de accesibilidad |
 | Plugin | Unidad de distribución que puede agrupar skills, MCP y otras extensiones | Plugin de Cloudflare |
 
 El directorio `mcp/` contiene recetas inertes. `templates/` da forma a la evidencia, `workflows/` conecta decisiones de ingeniería y `examples/` muestra cómo verificar el resultado. Los contratos viven en `schemas/` y la lógica ejecutable propia en `scripts/`; las pruebas construyen variantes del catálogo en directorios temporales.

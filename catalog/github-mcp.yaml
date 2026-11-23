@@ -7,28 +7,33 @@ provider: "GitHub"
 license: "MIT"
 repository: "https://github.com/github/github-mcp-server"
 docs: "https://github.com/github/github-mcp-server"
+entry: "docs/herramientas-ingenieria.md"
 integration: "MCP HTTP o stdio"
 technologies: ["git","github"]
 requires_stack: ["github"]
-use_cases: ["Leer metadatos de PR para una revisión autorizada."]
-requirements: ["Cliente MCP; OAuth para remoto o credencial restringida para el servidor local."]
+use_cases:
+  - "Inspeccionar metadatos, diff y estado de checks de un PR durante una revisión autorizada."
+  - "Consultar issues cuando el contexto local sea insuficiente."
+requirements:
+  - "Cliente para Streamable HTTP con autenticación compatible o ejecución local por stdio."
+  - "Credencial de alcance mínimo sobre repositorios autorizados según modalidad."
 setup:
   scope: "project"
-  method: "Configurar el servidor remoto oficial con acceso de lectura, o el binario local en stdio con --read-only y toolsets limitados."
+  method: "Para el servidor remoto, usar /mcp/readonly o X-MCP-Readonly y limitar toolsets. En stdio usar --read-only y toolsets mínimos con binario o imagen revisada."
 agents: ["codex","antigravity"]
-compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
-permissions: "Restringir organización, repositorio y permisos. Los textos de issues provienen de terceros."
-alternative: "git local o gh con credencial de lectura."
+compatibility: "HTTP y stdio documentados. Codex y Antigravity son candidatos según transporte y autenticación. Ensayo pendiente."
+permissions: "Restringir repositorios y permisos de credencial además de filtrar herramientas. El modo de lectura no restringe por sí solo el alcance de un token. Tratar issues y PR como entradas no confiables."
+alternative: "Usar git local para historial y diffs. gh con permisos mínimos puede cubrir consultas aisladas."
 depends_on: []
 conflicts_with: []
 review:
   status: "documented"
   upstream:
     archived: false
-    commit_date_utc: "2026-11-19"
-  reference: "c855185f60cd35c6c533bd5699911f4c4fdbf1e7"
-  date: "2026-11-19"
+    commit_date_utc: "2026-11-20"
+  reference: "9a72d8d38fec18c207cd924b33aa0eb3e186252c"
+  date: "2026-11-23"
   interval_days: 30
   runtime: "untested"
-  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  evidence: "Guía remota del commit revisada, incluidos toolsets y controles de lectura. Se conserva la evidencia previa de MIT y ambos transportes."
   pending: ["Prueba funcional por cliente, versión y sistema operativo."]

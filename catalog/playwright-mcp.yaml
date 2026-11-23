@@ -7,18 +7,21 @@ provider: "Microsoft"
 license: "Apache-2.0"
 repository: "https://github.com/microsoft/playwright-mcp"
 docs: "https://github.com/microsoft/playwright-mcp"
+entry: "docs/herramientas-ingenieria.md"
 integration: "MCP stdio"
 technologies: ["web","playwright","testing"]
 requires_stack: ["web"]
-use_cases: ["Recorrer un formulario en un servidor local con datos sintéticos."]
+use_cases:
+  - "Recorrer un formulario en una página local y examinar su árbol de accesibilidad."
+  - "Reproducir un fallo antes de formalizar una prueba en Playwright Test."
 requirements: ["Node.js 20+ según el README y navegador compatible."]
 setup:
   scope: "project"
   method: "Instalar @playwright/mcp en versión revisada dentro del proyecto y registrar su binario con --isolated por stdio."
 agents: ["codex","antigravity"]
-compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
-permissions: "Puede navegar, enviar formularios y leer su contenido. Usar perfil efímero con origen de prueba."
-alternative: "Suite Playwright Test existente para regresiones repetibles."
+compatibility: "Codex y Antigravity son candidatos por stdio. Negociación y ensayo funcional pendientes."
+permissions: "Puede navegar, enviar formularios y leer el estado de sesión. Usar --isolated y páginas sintéticas, sin cargar cookies ni storage-state personal. Habilitar capacidades adicionales de red o almacenamiento sólo con autorización."
+alternative: "Usar Playwright Test si el flujo ya está cubierto por la suite. axe-core + Playwright se ejecuta dentro del runner y tiene sus propias dependencias."
 depends_on: []
 conflicts_with: []
 review:
@@ -27,8 +30,8 @@ review:
     archived: false
     commit_date_utc: "2026-11-18"
   reference: "2337aff0213d28db41d3e3daf48cee19b3d0bd82"
-  date: "2026-11-19"
+  date: "2026-11-23"
   interval_days: 30
   runtime: "untested"
-  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  evidence: "Se conservaron el commit y los requisitos previos. Se contrastaron perfiles, flags y alcance con el README y las guías de Playwright."
   pending: ["Prueba funcional por cliente, versión y sistema operativo."]

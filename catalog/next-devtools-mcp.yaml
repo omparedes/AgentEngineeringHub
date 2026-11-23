@@ -1,0 +1,39 @@
+id: "next-devtools-mcp"
+name: "Next.js DevTools MCP"
+summary: "Conector de desarrollo para errores, rutas, logs y compilaciones observadas en el servidor Next.js."
+type: "mcp"
+origin: "official"
+provider: "Vercel y el equipo de Next.js"
+license: "MIT según el manifiesto npm de next-devtools-mcp 0.4.0."
+repository: "https://github.com/vercel/next-devtools-mcp"
+docs: "https://nextjs.org/docs/app/guides/mcp"
+entry: "docs/herramientas-ingenieria.md"
+integration: "MCP stdio con acceso al endpoint de desarrollo local de Next.js"
+technologies: ["web","nextjs","typescript","testing"]
+requires_stack: ["web"]
+use_cases:
+  - "Diagnosticar un error de compilación o ejecución y recuperar rutas o logs desde /_next/mcp."
+  - "Distinguir problemas del servidor Next.js y del navegador antes de abrir herramientas adicionales."
+requirements:
+  - "Node.js 20.19 o LTS posterior según el README."
+  - "Next.js 16 o posterior y servidor de desarrollo activo para inspección en ejecución."
+setup:
+  scope: "project"
+  method: "Registrar el ejecutable next-devtools-mcp de versión revisada por stdio en el consumidor y arrancar next dev localmente cuando se autorice."
+agents: ["codex","antigravity"]
+compatibility: "Cliente que admite stdio. Codex y Antigravity son candidatos por transporte; prueba pendiente."
+permissions: "Puede descubrir servidores de desarrollo por puertos locales y leer sus datos de diagnóstico. Usar una instancia sintética. Revisar qué herramientas anuncia la versión elegida."
+alternative: "Logs de next dev, salida de compilación y documentación de la versión instalada. En Angular se usa el flujo de su CLI. Propuesta exclusiva de generic-web con nextjs-16-dev confirmado mediante la versión efectiva y una tarea que requiere el servidor local."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-09-15"
+  reference: "1e8dcfa4789777901144b5d9710137f0eff72036"
+  date: "2026-11-23"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "Guía de Next.js, README del commit indicado y metadatos npm 0.4.0 consultados."
+  pending: ["Ensayo de alcance y negociación con cada cliente en un proyecto sintético."]
