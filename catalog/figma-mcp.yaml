@@ -6,8 +6,8 @@ origin: "official"
 provider: "Figma"
 license: "Licencia de implementación del servicio sin confirmar. El repositorio referenciado documenta su uso."
 repository: "https://github.com/figma/mcp-server-guide"
-docs: "https://help.figma.com/hc/en-us/articles/39216419318551-Get-started-with-the-Figma-MCP-server"
-entry: "docs/herramientas-ingenieria.md"
+docs: "https://developers.figma.com/docs/figma-mcp-server/"
+entry: "docs/prototipado.md"
 integration: "MCP Streamable HTTP remoto o endpoint de Figma Desktop"
 technologies: ["web","figma","design","frontend"]
 requires_stack: ["web"]
@@ -16,13 +16,13 @@ use_cases:
   - "Usar Code Connect cuando esté disponible para localizar componentes existentes."
 requirements:
   - "Acceso autorizado al archivo, cuenta Figma y cliente compatible. El plan y asiento influyen en herramientas y límites."
-  - "La variante Desktop requiere aplicación abierta, servidor habilitado y asiento Dev o Full de un plan apto."
+  - "La variante Desktop requiere aplicación abierta, servidor habilitado y asiento Dev o Full de un plan apto. Para escritura remota fuera de borradores, Figma exige asiento Full."
 setup:
   scope: "project"
   method: "Preferir https://mcp.figma.com/mcp con inicio de sesión autorizado. Figma documenta plugin y configuración manual para Codex, y el endpoint local http://127.0.0.1:3845/mcp para Desktop."
 agents: ["codex","antigravity"]
-compatibility: "Figma documenta Codex Desktop y CLI. Antigravity es candidato por HTTP y autenticación compatibles; runtime pendiente."
-permissions: "Los diseños pueden ser confidenciales. Seleccionar el archivo y herramientas de lectura mínimos. El remoto también puede ofrecer escrituras en canvas, sujetas a autorización separada."
+compatibility: "Figma documenta Codex Desktop y CLI y lista Google Antigravity en su catálogo de clientes. Confirmar disponibilidad de cada herramienta en el cliente y organización. Ensayo pendiente."
+permissions: "Acotar al archivo y las herramientas necesarios. El servidor Desktop permite leer contexto y seleccionar frames. La escritura en canvas y el envío de UI pertenecen al servidor remoto y requieren autorización separada."
 alternative: "Exportaciones y especificaciones aprobadas del sistema de diseño cuando proporcionan suficiente contexto. Ofrecer sólo cuando el diseño de esa tarea esté en Figma o el proceso de diseño haya optado por Figma."
 depends_on: []
 conflicts_with: []
@@ -35,5 +35,5 @@ review:
   date: "2026-11-23"
   interval_days: 30
   runtime: "untested"
-  evidence: "Ayuda de Figma, guía del proveedor en el commit indicado y procedimiento de conexión para Codex consultados."
+  evidence: "Ayuda de Figma, guía del proveedor en el commit indicado y conexión para Codex revisadas. En la consolidación se cotejaron el catálogo de clientes, herramientas remotas y locales, permisos y skills oficiales."
   pending: ["Ensayo de alcance y negociación con cada cliente en un proyecto sintético.", "Licencia de implementación del servidor remoto sin confirmar."]

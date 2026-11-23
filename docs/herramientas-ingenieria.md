@@ -18,6 +18,8 @@ El catálogo permite consultar y proponer estas capacidades con el entorno local
 
 ## Selección contextual
 
+Para explorar alternativas antes de que exista un diseño aprobado, consulta [prototipado con Stitch y Figma](prototipado.md). La decisión se anota en el workflow del proyecto.
+
 Los contextos representan hechos que confirma el operador. En `generic-web`, `nextjs-16-dev` exige verificar la versión efectiva con el lockfile o paquete instalado y justificar el uso de `next dev` local. La CLI registra esa declaración como condición y carece de introspección del consumidor. Las dos variantes de Angular excluyen Next.js DevTools mediante la ausencia de la condición y de la opción en sus perfiles.
 
 | Contexto | Capacidad propuesta | Perfiles |

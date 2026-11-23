@@ -9,7 +9,7 @@ entry: "skills/project-bootstrap/SKILL.md"
 integration: "Agent Skills"
 technologies: ["agent-skills"]
 requires_stack: []
-use_cases: ["Formular una propuesta inicial a partir de un perfil."]
+use_cases: ["Formular una propuesta inicial a partir de un perfil y recomendar una variante de Domain-First Agile Engineering cuando corresponda."]
 requirements: ["Checkout legible del Hub para consultar perfiles y fichas."]
 setup:
   scope: "project"
@@ -22,9 +22,9 @@ depends_on: []
 conflicts_with: []
 review:
   status: "local"
-  reference: "0.1.0"
-  date: "2026-11-19"
+  reference: "0.2.0-rc.1"
+  date: "2026-11-23"
   interval_days: 90
-  runtime: "tested"
-  evidence: "Ensayo de lectura explícita de la skill con un agente Codex en el escenario de RPC de examples/escenarios.md. Tras precisar la condición hosting, el segundo ensayo seleccionó las cinco capacidades esperadas y propuso probar el cliente antiguo."
-  pending: ["Descubrimiento automático en un proyecto de destino y ensayo interactivo en Antigravity."]
+  runtime: "metadata-checked"
+  evidence: "Metadatos, propuestas locales y descubrimiento en un consumidor aislado con Codex CLI 0.171.0-alpha.13 verificados para la candidata. En 0.1.0, un ensayo explícito en Codex del caso RPC seleccionó cinco capacidades y propuso probar el cliente anterior después de ajustar la condición hosting."
+  pending: ["Ensayo con modelo de las variantes metodológicas de la candidata en Codex y Antigravity."]

@@ -1,0 +1,41 @@
+id: "google-stitch"
+name: "Google Stitch"
+summary: "Exploración de interfaces, prototipos y sistemas de diseño con el lienzo web de Google Labs."
+type: "tool"
+origin: "official"
+provider: "Google Labs"
+license: "Apache-2.0 para el repositorio stitch-skills. La licencia de la implementación del servicio web no se ha confirmado."
+repository: "https://github.com/google-labs-code/stitch-skills"
+docs: "https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-ai-ui-design/"
+entry: "docs/prototipado.md"
+integration: "Herramienta web de diseño. Intercambio de DESIGN.md y exportaciones. SDK, MCP y skills como integraciones opcionales."
+technologies: ["web","design","frontend","prototyping","stitch"]
+requires_stack: ["web"]
+use_cases:
+  - "Explorar pantallas y estados con datos sintéticos antes de elegir una implementación."
+  - "Transferir decisiones visuales mediante DESIGN.md y entregar una exportación a un proyecto autorizado."
+requirements:
+  - "Acceso autorizado al servicio web de Stitch para usar su lienzo."
+  - "Una necesidad de prototipado y un conjunto de prompts, imágenes o datos aptos para compartir."
+setup:
+  scope: "none"
+  method: "Usar el lienzo oficial cuando se autorice. Un consumidor puede recibir DESIGN.md o exportaciones sin instalar un servidor MCP."
+agents: ["codex","antigravity"]
+compatibility: "Codex puede trabajar con archivos de diseño exportados. Google documenta exportación a Antigravity y skills opcionales para ambos clientes. Interoperabilidad sin ensayo en esta revisión."
+permissions: "El lienzo es un servicio alojado. Usar datos sintéticos o autorizados. Revisar permisos antes de subir archivos, compartir enlaces, importar código o activar una integración con escritura."
+alternative: "Boceto local o Figma si el equipo trabaja con su sistema de diseño. Opción de perfiles web sólo ante prototipado visual."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-23"
+  reference: "9f4e828e77634e230978be45fec5501554dbe4b2"
+  date: "2026-11-23"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "Anuncios y documentación de Google Labs sobre lienzo, exportación a Antigravity y DESIGN.md. Repositorio de skills y licencia revisados en la referencia indicada."
+  pending:
+    - "Ensayo de exportación e importación con un prototipo sintético."
+    - "Verificar alcance, cliente y herramientas de cualquier integración opcional antes de usarla."

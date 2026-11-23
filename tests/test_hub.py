@@ -196,9 +196,35 @@ class CatalogTests(unittest.TestCase):
 
     def test_rpc_with_existing_hosting(self):
         chosen, _ = hub.select(self.profiles["angular-supabase-cloudflare"], self.caps, "codex",
-                               ["cambio-existente", "cambio-sql"])
+                               ["trabajo-frontend", "cambio-existente", "cambio-sql"])
         self.assertEqual(set(chosen), {"project-bootstrap", "angular-skills", "change-impact-analysis",
-                                       "supabase-skills", "cambio-controlado"})
+                                       "supabase-skills", "cambio-controlado", "modern-web-guidance"})
+
+    def test_sql_maintenance_excludes_frontend_and_prototyping(self):
+        profile = self.profiles["angular-supabase-cloudflare"]
+        for agent in hub.AGENTS:
+            with self.subTest(agent=agent):
+                chosen, _ = hub.select(profile, self.caps, agent, ["cambio-existente", "cambio-sql"])
+                self.assertEqual(set(chosen), {"project-bootstrap", "change-impact-analysis",
+                                               "supabase-skills", "cambio-controlado"})
+
+    def test_stitch_is_a_tool_with_context_and_explicit_inclusion(self):
+        self.assertEqual(self.caps["google-stitch"]["type"], "tool")
+        web_profiles = {"angular-frontend", "angular-supabase-cloudflare", "generic-web"}
+        for profile_id, profile in self.profiles.items():
+            for agent in hub.AGENTS:
+                with self.subTest(profile=profile_id, agent=agent):
+                    with self.assertRaises(hub.Invalid):
+                        hub.select(profile, self.caps, agent, include=["google-stitch"])
+                    if profile_id in web_profiles:
+                        context = ["prototipado-visual"]
+                        proposal, _ = hub.select(profile, self.caps, agent, context)
+                        self.assertNotIn("google-stitch", proposal)
+                        requested, _ = hub.select(profile, self.caps, agent, context, ["google-stitch"])
+                        self.assertEqual(set(requested) - proposal.keys(), {"google-stitch"})
+                    else:
+                        with self.assertRaises(hub.Invalid):
+                            hub.select(profile, self.caps, agent, ["prototipado-visual"])
 
     def test_date_validation(self):
         cap = copy.deepcopy(self.caps["context7"])

@@ -48,3 +48,5 @@ En el primer caso aparece el CLI como opcional seleccionado. El segundo propone 
 La condición `trabajo-frontend` corresponde a tareas de interfaz, accesibilidad, compatibilidad, rendimiento web o modernización. Una decisión de hosting o una migración SQL por sí sola deja esa condición inactiva. [Modern Web Guidance](modern-web-guidance.md)
 
 Consulta los criterios de accesibilidad, Lighthouse, ASVS, Sentry, Figma y Next.js DevTools antes de activar sus contextos. `nextjs-16-dev` sólo existe en `generic-web` y requiere evidencia de la versión efectiva antes de recomendar el servidor. El Hub toma ese hecho del operador. [Herramientas y condiciones por fase](herramientas-ingenieria.md)
+
+En los tres perfiles web, `prototipado-visual` permite incluir Stitch mediante `--include google-stitch` cuando el operador elige esa herramienta. Si el flujo ya usa Figma, `diseno-figma` permite considerar su ficha. Para SQL o mantenimiento sin cambios de interfaz deja inactivas ambas condiciones. En el perfil full-stack, `angular-skills` y Modern Web Guidance también requieren `trabajo-frontend`. [Criterios de prototipado](prototipado.md)

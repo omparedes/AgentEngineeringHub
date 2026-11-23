@@ -22,9 +22,9 @@ depends_on: []
 conflicts_with: []
 review:
   status: "local"
-  reference: "0.1.0"
-  date: "2026-11-19"
+  reference: "0.2.0-rc.1"
+  date: "2026-11-23"
   interval_days: 90
   runtime: "metadata-checked"
-  evidence: "Entrada local incluida en el Hub; verificación estructural por la suite."
+  evidence: "Verificación estructural y descubrimiento en un consumidor aislado con Codex CLI 0.171.0-alpha.13. La candidata distingue a quienes deciden de quienes operan y conserva IDs para consolidar fuentes."
   pending: ["Evaluación de resultados con ambos clientes."]

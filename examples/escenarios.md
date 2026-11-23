@@ -7,11 +7,11 @@ Todos los proyectos y necesidades de estos ejemplos son sintéticos. Los comando
 **Solicitud.** «Añadimos una pantalla Angular 22. Cambia una RPC que aún usa una aplicación móvil. Tenemos migraciones en Git y Pages ya está elegido. Prepara el cambio con material local».
 
 ```console
-python scripts/hub.py recommend angular-supabase-cloudflare --agent codex --context cambio-existente --context cambio-sql
+python scripts/hub.py recommend angular-supabase-cloudflare --agent codex --context trabajo-frontend --context cambio-existente --context cambio-sql
 python scripts/hub.py show cambio-controlado
 ```
 
-La propuesta incluye `angular-skills`, `project-bootstrap`, `supabase-skills`, `change-impact-analysis` y su workflow `cambio-controlado`. La configuración de Pages ya está decidida. Mantén inactiva la condición `hosting` hasta que haya una decisión nueva.
+La propuesta incluye `angular-skills`, `modern-web-guidance`, `project-bootstrap`, `supabase-skills`, `change-impact-analysis` y su workflow `cambio-controlado`. La configuración de Pages ya está decidida. Mantén inactiva la condición `hosting` hasta que haya una decisión nueva.
 
 En el agente, pide: «Usa project-bootstrap del checkout del Hub. Distingue las pruebas que ya existen de las que propones». Una respuesta aceptable registra el contrato del móvil, propone probar parámetros y respuestas antiguas y nuevas, y describe la reversión si una migración deja datos incompatibles. Las migraciones versionadas bastan para preparar el análisis; no se necesita autenticar Supabase.
 
