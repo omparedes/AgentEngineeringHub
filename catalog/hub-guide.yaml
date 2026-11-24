@@ -1,0 +1,30 @@
+id: "hub-guide"
+name: "Guía de entrada al Hub"
+summary: "Usa un inventario local y el catálogo para preparar el equipo, iniciar un proyecto o retomar uno."
+type: "skill"
+origin: "hub"
+provider: "Agent Engineering Hub"
+license: "MIT"
+entry: "skills/hub-guide/SKILL.md"
+integration: "Agent Skills"
+technologies: ["agent-skills"]
+requires_stack: []
+use_cases: ["Preparar un equipo, iniciar un proyecto y revisar qué capacidades faltan en un proyecto existente."]
+requirements: ["Cliente con soporte Agent Skills y catálogo legible para recomendaciones concretas."]
+setup:
+  scope: "user"
+  method: "Previsualizar el destino oficial con scripts/install_hub_guide.py y copiar sólo tras autorización explícita. También se admite copia por proyecto."
+agents: ["codex", "antigravity"]
+compatibility: "La documentación de ambos clientes admite skills de usuario y de proyecto. Requiere validación funcional independiente por superficie."
+permissions: "Lectura limitada al diagnóstico. Las copias, instalaciones y cambios de configuración requieren autorización específica."
+alternative: "Consultar el catálogo local y aplicar project-bootstrap cuando corresponda."
+depends_on: []
+conflicts_with: []
+review:
+  status: "local"
+  reference: "codex/hub-guide"
+  date: "2026-11-23"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "Rutas de descubrimiento y sintaxis de invocación cotejadas en la documentación oficial de Codex y Antigravity App."
+  pending: ["Prueba funcional de los tres recorridos en Codex Desktop y Antigravity App."]

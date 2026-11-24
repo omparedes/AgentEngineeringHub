@@ -20,3 +20,7 @@ Consolida el catálogo ampliado y [Domain-First Agile Engineering](metodologia/d
 Antes de cerrar 0.2.0, revisa los resultados pendientes, confirma los cambios y comprueba la CI alojada cuando exista una publicación autorizada. La detección periódica de referencias y la medición de utilidad de perfiles pueden seguir como mejoras posteriores.
 
 Añadir soporte específico para otro agente requerirá evidencia de descubrimiento, alcance de instalación e invocación. Una interfaz web, backend, base de datos o marketplace se evaluarán si la experiencia de uso demuestra una necesidad concreta.
+
+## Propuesta para v0.3.0
+
+Probar [la entrada única con hub-guide](guia-hub.md) en Codex Desktop y Antigravity App. La publicación depende de una prueba de preparación en un equipo limpio y de la validación de las tres operaciones con un catálogo local.

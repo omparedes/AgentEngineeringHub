@@ -14,7 +14,7 @@ python scripts/hub.py recommend angular-supabase-cloudflare --context cambio-sql
 python scripts/hub.py show supabase-skills
 ```
 
-La primera orden comprueba **28 capacidades, cinco perfiles y cuatro skills propias** en este árbol. La segunda propone `project-bootstrap` y `supabase-skills` para revisar SQL local. La tercera muestra la evidencia y las condiciones de uso de una sola ficha. Si partes de un entorno limpio, sigue el [inicio rápido para Windows y POSIX](docs/inicio-rapido.md).
+La primera orden comprueba **29 capacidades, cinco perfiles y cinco skills propias** en esta propuesta de v0.3.0. La segunda propone `project-bootstrap` y `supabase-skills` para revisar SQL local. La tercera muestra la evidencia y las condiciones de uso de una sola ficha. Si partes de un entorno limpio, sigue el [inicio rápido para Windows y POSIX](docs/inicio-rapido.md).
 
 ## Qué incluye
 
@@ -31,6 +31,7 @@ La primera orden comprueba **28 capacidades, cinco perfiles y cuatro skills prop
 | Entender el diseño y los formatos | [Arquitectura](docs/arquitectura.md) · [contratos](schemas/) |
 | Crear skills, registrar MCP o extender perfiles | [Guía de autoría](docs/autoria.md) |
 | Revisar versiones y decisiones | [Mantenimiento](docs/mantenimiento.md) · [historial](CHANGELOG.md) |
+| Preparar el equipo, iniciar o retomar un proyecto | [Empezar con el Hub](docs/guia-hub.md) |
 | Validar, contribuir o evaluar riesgos | [Pruebas](docs/pruebas.md) · [contribuciones](CONTRIBUTING.md) · [seguridad](SECURITY.md) |
 | Consultar próximos hitos | [Roadmap](docs/roadmap.md) |
 | Revisar la entrega 0.1.0 | [Inventario, resultados y limitaciones](docs/informe-0.1.0.md) |

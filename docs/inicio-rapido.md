@@ -36,7 +36,7 @@ python scripts/hub.py show angular-cli-mcp
 python scripts/hub.py recommend business-discovery --agent antigravity
 ```
 
-El validador informa 28 capacidades, cinco perfiles y cuatro skills propias en esta candidata. El filtro devuelve `angular-cli-mcp` y la ficha muestra los límites de lectura del CLI. El último comando selecciona `domain-discovery` antes de `descubrimiento` por su dependencia. Las consultas funcionan con datos locales.
+El validador informa 29 capacidades, cinco perfiles y cinco skills propias en esta propuesta de v0.3.0. El filtro devuelve `angular-cli-mcp` y la ficha muestra los límites de lectura del CLI. El último comando selecciona `domain-discovery` antes de `descubrimiento` por su dependencia. Las consultas funcionan con datos locales.
 
 Si el resultado no coincide, comprueba que ejecutaste desde la raíz y que el intérprete pertenece a tu entorno. Un ID mal escrito o una combinación incompatible produce un mensaje en stderr y código de salida distinto de cero. Continúa con los [ejemplos completos](../examples/escenarios.md).
 
