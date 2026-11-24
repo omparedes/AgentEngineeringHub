@@ -34,7 +34,7 @@ La primera orden comprueba **28 capacidades, cinco perfiles y cuatro skills prop
 | Validar, contribuir o evaluar riesgos | [Pruebas](docs/pruebas.md) · [contribuciones](CONTRIBUTING.md) · [seguridad](SECURITY.md) |
 | Consultar próximos hitos | [Roadmap](docs/roadmap.md) |
 | Revisar la entrega 0.1.0 | [Inventario, resultados y limitaciones](docs/informe-0.1.0.md) |
-| Repetir las pruebas desde un proyecto consumidor | [Protocolo de aceptación](docs/aceptacion-consumidores.md) · [Auditoría de 0.1.0](docs/auditoria-aceptacion-0.1.0.md) |
+| Repetir las pruebas desde un proyecto consumidor | [Pruebas manuales de 0.2.0](docs/testing/validacion-manual-agentes-v0.2.0.md) · [Protocolo de aceptación](docs/aceptacion-consumidores.md) · [Auditoría de 0.1.0](docs/auditoria-aceptacion-0.1.0.md) |
 
 Las skills originales cubren [arranque](skills/project-bootstrap/SKILL.md), [dominio](skills/domain-discovery/SKILL.md), [impacto](skills/change-impact-analysis/SKILL.md) y [mantenimiento](.agents/skills/hub-maintainer/SKILL.md). Los datos se pueden leer directamente como YAML o consultar por tipo, tecnología e ID. Consultar una ficha o elegir un perfil no instala nada.
 

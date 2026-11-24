@@ -5,8 +5,11 @@ El formato común es una carpeta con un `SKILL.md` de nombre y descripción decl
 | Superficie | Alcance de proyecto | Uso |
 | --- | --- | --- |
 | Codex | Lee `.agents/skills/` desde el directorio actual hacia la raíz del repositorio; acepta instrucciones `AGENTS.md` en el recorrido | En un chat del Hub solicita `$hub-maintainer audita la ficha context7`. Una tarea compatible también puede activar la skill por descripción. |
-| Antigravity App y CLI | Descubren las skills de `.agents/skills/` del workspace y sus padres hasta la raíz. Admiten reglas raíz como `AGENTS.md` | Desde el Hub solicita `/hub-maintainer revisa la evidencia de angular-skills`. En CLI usa `/skills reload` o inicia una conversación nueva tras incorporar una skill. |
+| Antigravity App | Descubre `.agents/skills/` en las carpetas del Project. | En **Projects**, crea un proyecto con **Add Folder** y selecciona el checkout local del Hub. Abre una conversación en ese proyecto y selecciona `/hub-maintainer` en el campo de mensaje. |
+| Antigravity CLI | Descubre `.agents/skills/` desde el directorio de trabajo. | En la TUI ejecuta `/hub-maintainer revisa la evidencia de angular-skills`. Usa `/skills reload` o inicia una conversación nueva tras copiar una skill. |
 | Antigravity IDE | Reconoce `.agents/skills/` en el workspace | Inspecciona Customizations en el panel del agente y pide la skill por nombre. Comprueba en tu versión qué reglas se cargaron; si hace falta, indica explícitamente que lea el AGENTS.md raíz. |
+
+En Antigravity App, usa la conversación del Project para tener acceso a sus carpetas. Si aparece el selector de entorno, elige **Local** para usar los archivos ya preparados. Revisa **Customizations** si necesitas comprobar el ámbito y usa el selector `/` en la conversación para confirmar disponibilidad. **Open IDE** abre una superficie separada. [Proyectos de Antigravity](https://antigravity.google/docs/projects) · [Inicio de Antigravity App](https://antigravity.google/docs/getting-started)
 
 Fuentes del comportamiento por cliente. [Codex Skills](https://learn.chatgpt.com/docs/build-skills) · [Codex AGENTS.md](https://developers.openai.com/codex/guides/agents-md/) · [Antigravity Skills](https://antigravity.google/docs/skills) · [Antigravity Rules](https://antigravity.google/docs/rules)
 
