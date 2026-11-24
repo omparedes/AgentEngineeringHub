@@ -23,9 +23,11 @@ Este control negativo debe terminar con código 1 y la razón `no aplicable`. Co
 
 ## Qué prueba GitHub Actions
 
-La [CI](../.github/workflows/validate.yml) se activa al abrir, actualizar o reabrir un PR y al publicar un commit en `main` o una rama candidata `release/v*-rc.*` de este repositorio. En PR obtiene por separado la base revisada y el árbol combinado. Ejecuta scripts y tests de la base y valida los datos propuestos. El checkout oficial está fijado por SHA, el token tiene lectura y se descartan sus credenciales. El runner instala los paquetes Python firmados de Ubuntu.
+La [CI](../.github/workflows/validate.yml) está configurada para activarse al abrir, actualizar o reabrir un PR y al publicar un commit en `main` o una rama candidata `release/v*-rc.*` de este repositorio. En PR obtiene por separado la base revisada y el árbol combinado. Ejecuta scripts y tests de la base y valida los datos propuestos. El checkout oficial está fijado por SHA, el token tiene lectura y se descartan sus credenciales. El runner instala los paquetes Python firmados de Ubuntu.
 
 El push a una rama candidata ejecuta su propia suite y el push a `main` ejecuta la suite integrada. Reserva los pushes a ramas de release para cambios ya revisados por mantenedores. La ejecución del PR mantiene los scripts de la base separados de los datos aportados. Antes de cerrar una release, comprueba en Actions el evento, el SHA auditado, el resultado de los pasos y que el PR corresponde a esa revisión.
+
+Si falta la ejecución automática, en **Actions → Validar Hub → Run workflow** selecciona `main`. La ejecución `workflow_dispatch` de `main` pasa por el mismo validador y la misma suite. Registra el enlace, el evento, el SHA y el resultado del job. Una ejecución manual satisfactoria acredita la validación alojada de ese commit. Para acreditar los disparadores automáticos se requiere evidencia de `push` o `pull_request`, según corresponda. [Ejecución manual de workflows](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)
 
 ## Ensayos de comportamiento
 

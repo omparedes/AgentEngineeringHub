@@ -4,12 +4,14 @@ on:
     types: [opened, synchronize, reopened]
   push:
     branches: [main, 'release/v*-rc.*']
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   validate:
+    if: github.event_name != 'workflow_dispatch' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 8
     steps:
