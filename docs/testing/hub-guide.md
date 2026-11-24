@@ -26,6 +26,46 @@ Para el control de herramienta realmente instalada, repite el último turno en u
 
 Conserva SHA, superficie, versión, modelo, skill seleccionada, archivos consultados y salida saneada. Registra por separado una autorización solicitada, un intento de escritura y cualquier lectura bloqueada. Comprueba el contenido del consumidor antes y después.
 
+## Informe y decisiones de herramientas
+
+Usa otro consumidor desechable con la misma copia de `hub-guide`. Copia el [manifiesto sintético](../../templates/herramientas-proyecto.yaml) como `.agents/hub-tools.yaml`. Crea `proyecto.md` con estos datos:
+
+> Faro administra anticipos en una asociación ficticia. Finanzas revisa las solicitudes de Operaciones. El sistema usa Angular, Supabase y Cloudflare Pages. La fase anterior sólo revisaba una RPC local. Ahora se quiere cambiar el formulario Angular y contrastarlo con un boceto en Figma. El stack ya está decidido. Los datos, equipos y verificaciones de integraciones en este caso son sintéticos.
+
+En una conversación nueva del consumidor, selecciona la skill y pega este mensaje:
+
+```text
+Revisa las herramientas de este proyecto. Lee proyecto.md y .agents/hub-tools.yaml y usa el catálogo local. Para este ejercicio, toma estas observaciones simuladas del cliente actual: GitHub MCP ya está configurado y una consulta de lectura autorizada funcionó. Supabase MCP aparece registrado, sin prueba de conexión. Angular Agent Skills no aparece en los ámbitos relevantes, que sí pudieron inspeccionarse. Next.js DevTools no corresponde al stack Angular. Los permisos no permiten inspeccionar los plugins privados. Presenta el Informe de Herramientas Recomendadas y Estado del Entorno. Trabaja en sólo lectura, sin instalar, activar, conectar servicios ni cambiar archivos. Espera mi selección.
+```
+
+Después del informe, envía «**UTILIZAR** Angular Agent Skills. Mantén mis otras decisiones». El resultado esperado es un plan de copia con archivos, alcance, permisos y prueba propuesta, seguido de una solicitud de autorización específica. El consumidor debe seguir intacto. En una conversación distinta ensaya un cambio de equipo con «Revisa las herramientas de este proyecto en esta instalación nueva. Sólo tienes acceso a los archivos del consumidor y al catálogo local». El estado operativo anterior debe dejar de presentarse como evidencia actual.
+
+| Caso | Resultado esperado |
+| --- | --- |
+| GitHub MCP ya preparado | Reconoce la evidencia simulada y propone reutilizarlo dentro del alcance aceptado. Un mero registro justificaría verificar, sin reinstalar. |
+| Supabase MCP registrado | Configurado sin verificar. Propone una prueba acotada y espera autorización si requiere conexión. |
+| Angular Agent Skills ausente | Recomendada por el trabajo de interfaz y pendiente de selección inicial. |
+| Next.js DevTools MCP en Angular | Incompatible para ese proyecto. Queda fuera de la propuesta de instalación. |
+| Figma MCP pospuesto | Conserva la decisión incluso si el diseño aporta una razón para reconsiderarlo. |
+| Playwright MCP omitido | Mantiene la omisión aunque la herramienta esté disponible. |
+| Cambio de computadora | Conserva selecciones. El estado previo de GitHub MCP sólo sirve como registro histórico. |
+| Cambio de fase | Añade la capacidad de Angular al pasar de SQL a interfaz y conserva las decisiones previas. |
+| Permisos insuficientes | Estado desconocido para el inventario bloqueado. |
+| Respuesta UTILIZAR | Solicita autorización específica antes de instalar, configurar, activar o ampliar permisos. |
+
+El informe debe poder leerse sin conocer IDs ni comandos. Comprueba que cada fila tenga finalidad, prioridad, evidencia, acción, riesgo y recomendación, y que el resumen explique qué decisión necesitas tomar. Guarda los dos turnos iniciales, la evidencia del cambio de equipo y un inventario antes y después. Una captura de un servidor registrado por sí sola deja su operatividad pendiente.
+
+### Reproducción offline para mantenimiento
+
+Desde la raíz del Hub, reproduce la decisión sobre GitHub y Supabase con señales sintéticas de la sesión:
+
+```console
+python scripts/hub.py tools-plan --manifest templates/herramientas-proyecto.yaml --tool github-mcp --observed github-mcp=uso-verificado --tool supabase-mcp --observed supabase-mcp=configuracion-observada
+python scripts/hub.py tools-plan --manifest templates/herramientas-proyecto.yaml --tool github-mcp
+```
+
+El primer comando propone reutilizar GitHub y verificar Supabase con autorización específica. El segundo conserva la selección y el alcance deseado de GitHub con estado `desconocido`. El comando consulta sólo las herramientas indicadas y funciona en modo lectura. Usa `recommend` para comprobar el perfil y sus condiciones antes de proponer incorporaciones. Los estados proceden de la evidencia que se indica al comando. Su salida sirve para preparar el informe y para planificar cambios tras la selección. La autorización de ejecución se obtiene en la conversación.
+
 ## Evidencia
 
 | Comprobación | Evidencia y estado |
@@ -33,8 +73,10 @@ Conserva SHA, superficie, versión, modelo, skill seleccionada, archivos consult
 | Previsualización, copia de revisión fijada y destino por cliente | Pruebas automatizadas con repositorio y directorios de usuario temporales. |
 | Copia existente, ausencia de Git, versión estable sin la skill y ramas candidatas | Pruebas automatizadas que comprueban que no cambia el directorio de usuario. |
 | Selección offline y rechazo de perfiles o capacidades incompatibles | Suite del catálogo con condiciones, stack, permisos y cliente. |
+| Decisiones, evidencia actual, validación del manifiesto y consultas de sólo lectura | Diez pruebas sintéticas de `test_project_tools.py` aprobadas dentro de la suite local. |
 | Descubrimiento con Codex CLI `0.171.0-alpha.13` | BLOQUEADA. El proceso local terminó antes de responder a la consulta de metadatos. No se ejecutó un turno con modelo. |
 | Descubrimiento y tres turnos en Codex Desktop y Antigravity App | PENDIENTE de capturas y respuesta de cada cliente. |
 | Primera preparación completa en un equipo recién configurado | PENDIENTE de un recorrido manual, incluido el descubrimiento tras la instalación de usuario. |
+| Informe, diálogo de aprobación y persistencia por parte del agente | PENDIENTE de los ensayos manuales en Codex Desktop y Antigravity App. |
 
 Desde la raíz del Hub, ejecuta el [procedimiento de pruebas](../pruebas.md). El instalador usa sólo la biblioteca estándar de Python y Git local. El conjunto de pruebas del catálogo requiere las dependencias habituales del Hub.

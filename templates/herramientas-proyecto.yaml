@@ -1,0 +1,34 @@
+# Ejemplo sintético. En un proyecto consumidor, la ruta habitual es .agents/hub-tools.yaml.
+version: 1
+perfil: angular-supabase-cloudflare
+stack: [angular, typescript, supabase, postgresql, cloudflare]
+catalogo:
+  referencia: v0.3.0
+  fecha: "2026-11-23"
+decisiones:
+  github-mcp:
+    seleccion: utilizar
+    alcance: proyecto
+    ubicacion: mcp-del-proyecto
+    motivo: Reutilizar para consultar incidencias del repositorio autorizado.
+  supabase-mcp:
+    seleccion: utilizar
+    alcance: proyecto
+    ubicacion: mcp-del-proyecto
+    motivo: Evaluar acceso de lectura a un entorno desechable.
+  figma-mcp:
+    seleccion: posponer
+    alcance: proyecto
+    ubicacion: mcp-del-proyecto
+    motivo: Revisar cuando exista un diseño aprobado.
+  playwright-mcp:
+    seleccion: omitir
+    alcance: ninguno
+    ubicacion: ninguna
+    motivo: El equipo prefiere su suite local.
+ultima_observacion:
+  fecha: "2026-11-23"
+  cliente: codex
+  herramientas:
+    github-mcp: instalada-y-operativa
+    supabase-mcp: configurada-sin-verificar

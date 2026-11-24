@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Decisiones de herramientas de un proyecto",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "perfil", "stack", "catalogo", "decisiones"],
+  "properties": {
+    "version": {"type": "integer", "const": 1},
+    "perfil": {"anyOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+    "stack": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true},
+    "catalogo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["referencia", "fecha"],
+      "properties": {
+        "referencia": {
+          "type": ["string", "null"],
+          "pattern": "^(v[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?|[a-f0-9]{40}|[a-f0-9]{64})$",
+          "maxLength": 80
+        },
+        "fecha": {"type": "string", "format": "date"}
+      }
+    },
+    "decisiones": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/id"},
+      "additionalProperties": {"$ref": "#/$defs/decision"}
+    },
+    "ultima_observacion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fecha", "cliente", "herramientas"],
+      "properties": {
+        "fecha": {"type": "string", "format": "date"},
+        "cliente": {"enum": ["codex", "antigravity", "desconocido"]},
+        "herramientas": {
+          "type": "object",
+          "propertyNames": {"$ref": "#/$defs/id"},
+          "additionalProperties": {"$ref": "#/$defs/estado"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seleccion", "alcance", "ubicacion"],
+      "properties": {
+        "seleccion": {"enum": ["utilizar", "posponer", "omitir"]},
+        "alcance": {"enum": ["proyecto", "usuario", "cliente", "ninguno", "desconocido"]},
+        "ubicacion": {
+          "enum": [
+            "skills-del-proyecto", "skills-del-usuario", "mcp-del-proyecto",
+            "mcp-del-usuario", "dependencias-del-proyecto", "plugins-del-cliente",
+            "herramienta-nativa", "documentacion", "ninguna", "desconocida"
+          ]
+        },
+        "motivo": {"type": "string", "minLength": 1, "maxLength": 160}
+      }
+    },
+    "estado": {
+      "enum": [
+        "instalada-y-operativa", "instalada-sin-configurar", "configurada-sin-verificar",
+        "no-instalada", "incompatible", "desconocido"
+      ]
+    }
+  }
+}

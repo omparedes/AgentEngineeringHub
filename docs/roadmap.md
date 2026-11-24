@@ -23,4 +23,4 @@ Añadir soporte específico para otro agente requerirá evidencia de descubrimie
 
 ## Propuesta para v0.3.0
 
-Probar [la entrada única con hub-guide](guia-hub.md) en Codex Desktop y Antigravity App. La publicación depende de una prueba de preparación en un equipo limpio y de la validación de las tres operaciones con un catálogo local.
+Probar [la entrada única con hub-guide](guia-hub.md) en Codex Desktop y Antigravity App. La publicación depende de una prueba en un equipo limpio y de validar las tres operaciones con un catálogo local. Comprueba que el informe preceda a la selección, que los cambios requieran autorización específica y que las decisiones se conserven al cambiar de entorno.
