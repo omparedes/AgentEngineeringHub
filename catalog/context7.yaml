@@ -7,28 +7,33 @@ provider: "Upstash"
 license: "MIT para el repositorio; el backend alojado es privado."
 repository: "https://github.com/upstash/context7"
 docs: "https://github.com/upstash/context7"
+entry: "docs/herramientas-ingenieria.md"
 integration: "MCP HTTP"
 technologies: ["documentation","python","typescript","javascript"]
 requires_stack: []
-use_cases: ["Resolver una duda sobre la versión de una biblioteca cuando la referencia local es insuficiente."]
-requirements: ["Cliente MCP HTTP, acceso al servicio y autenticación según modalidad."]
+use_cases:
+  - "Resolver una duda versionada de API cuando la documentación local es insuficiente."
+  - "Identificar una biblioteca y contrastar documentación y ejemplos con la fuente del proveedor."
+requirements:
+  - "Cliente MCP HTTP, acceso al servicio y autenticación por OAuth o clave según modalidad."
+  - "Nombre de biblioteca, versión de interés y pregunta pública saneada."
 setup:
   scope: "project"
-  method: "Registrar https://mcp.context7.com/mcp en el proyecto; aportar la credencial desde el almacén del cliente."
+  method: "Usar https://mcp.context7.com/mcp con Bearer desde el almacén del cliente o la ruta documentada /mcp/oauth para OAuth. Upstash documenta también un plugin Codex."
 agents: ["codex","antigravity"]
-compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
-permissions: "La consulta sale del equipo. Usar sólo nombres de bibliotecas y preguntas saneadas; verificar ejemplos con upstream."
-alternative: "Documentación versionada del propio proveedor."
+compatibility: "Upstash documenta Codex y opciones para Antigravity. Transporte, autenticación y descubrimiento pendientes de ensayo."
+permissions: "La consulta sale del equipo y consume cuota según modalidad. Usar nombres públicos y preguntas saneadas. Verificar los ejemplos contra la versión instalada."
+alternative: "Preferir la documentación local o publicada por el proveedor cuando ya resuelve la duda. Modern Web Guidance cubre plataforma web y Baseline."
 depends_on: []
 conflicts_with: []
 review:
   status: "documented"
   upstream:
     archived: false
-    commit_date_utc: "2026-11-19"
-  reference: "f1872ebb2f3d943b293bb86fdc0c2905988820d9"
-  date: "2026-11-19"
+    commit_date_utc: "2026-11-23"
+  reference: "11cb18d81c93bffe6c9c662ec7cb605f34ea6946"
+  date: "2026-11-23"
   interval_days: 30
   runtime: "untested"
-  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  evidence: "Guía oficial de Codex en el commit, README y opciones de autenticación cotejados."
   pending: ["Prueba funcional por cliente, versión y sistema operativo."]

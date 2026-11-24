@@ -3,11 +3,37 @@ name: "Frontend Angular"
 activate_when: "El entregable es una interfaz Angular con manifiesto o stack acordado."
 stack: ["angular","typescript","web"]
 conditions:
+  prototipado-visual: "Hay una decisión de interfaz que requiere explorar pantallas, estados o navegación."
+  auditoria-accesibilidad: "Hay estados de interfaz que deben auditarse como regresión y se ha elegido Playwright Test."
+  presupuesto-lighthouse: "Hay páginas reproducibles y se acordó automatizar auditorías o presupuestos Lighthouse."
+  diseno-figma: "La tarea requiere un diseño mantenido en Figma o un proceso de diseño que ha elegido Figma."
+  prueba-navegacion: "Hay un flujo de prueba local que requiere interacción."
   reglas-abiertas: "Hay una regla de negocio sin confirmar."
   cambio-existente: "La petición modifica comportamiento ya utilizado."
   medir-web: "Hay una página de prueba y una pregunta de rendimiento."
+  trabajo-frontend: "La tarea incluye HTML, CSS, APIs del navegador, accesibilidad, rendimiento de interfaz o modernización."
   inspeccion-cli: "Es necesario consultar el workspace de Angular CLI."
 choices:
+  - id: "google-stitch"
+    level: "optional"
+    when: ["prototipado-visual"]
+    reason: "Explorar variantes de interfaz con datos sintéticos cuando el usuario elige Stitch."
+  - id: "axe-core-playwright"
+    level: "recommended"
+    when: ["auditoria-accesibilidad"]
+    reason: "Agregar comprobaciones de regresión de accesibilidad a la suite Playwright Test."
+  - id: "lighthouse-ci"
+    level: "recommended"
+    when: ["presupuesto-lighthouse"]
+    reason: "Medir páginas reproducibles y comprobar los presupuestos acordados de Lighthouse."
+  - id: "figma-mcp"
+    level: "recommended"
+    when: ["diseno-figma"]
+    reason: "Contrastar la implementación con componentes, variables y layout del diseño autorizado."
+  - id: "playwright-mcp"
+    level: "optional"
+    when: ["prueba-navegacion"]
+    reason: "Explorar un recorrido con datos sintéticos cuando las pruebas existentes no basten."
   - id: "project-bootstrap"
     level: "essential"
     when: []
@@ -16,6 +42,10 @@ choices:
     level: "recommended"
     when: []
     reason: "Revisar patrones Angular contra la versión fijada en el proyecto."
+  - id: "modern-web-guidance"
+    level: "recommended"
+    when: ["trabajo-frontend"]
+    reason: "Consultar prácticas de plataforma web y Baseline para el cambio de interfaz."
   - id: "descubrimiento"
     level: "recommended"
     when: ["reglas-abiertas"]

@@ -1,0 +1,39 @@
+id: "owasp-asvs"
+name: "OWASP Application Security Verification Standard"
+summary: "Proporciona requisitos verificables para autenticación, autorización, validación de datos, seguridad de API y controles de aplicaciones web."
+type: "rule"
+origin: "official"
+provider: "OWASP Foundation y colaboradores de ASVS"
+license: "CC-BY-SA-4.0 para el estándar ASVS 5.0.0."
+repository: "https://github.com/OWASP/ASVS"
+docs: "https://asvs.owasp.org/"
+entry: "docs/herramientas-ingenieria.md"
+integration: "Estándar documental de verificación de seguridad de aplicaciones"
+technologies: ["web","security","auth","api","verification"]
+requires_stack: ["web"]
+use_cases:
+  - "Preparar la matriz de verificación de una app empresarial, financiera o que trata información sensible."
+  - "Rastrear controles de autenticación, autorización y validación hasta evidencia revisable."
+requirements:
+  - "Inventario de datos, arquitectura, límites de confianza y riesgo para seleccionar L1, L2 o L3."
+  - "Artefactos de prueba y decisión documentada para requisitos no aplicables."
+setup:
+  scope: "none"
+  method: "Consultar la edición estable 5.0.0 y acordar alcance, nivel y evidencias aplicables. Citar requisitos con el prefijo v5.0.0- seguido de su identificador."
+agents: ["codex","antigravity"]
+compatibility: "Referencia documental utilizable por ambos agentes; la verificación depende de pruebas del proyecto."
+permissions: "Consultar el estándar sin credenciales. Realizar cualquier verificación técnica sólo con acceso autorizado y datos de prueba."
+alternative: "Checklist interno trazado a requisitos ASVS cuando ya cubre el alcance y conserva evidencias. Recomendar para una revisión de seguridad de aplicación web basada en riesgo, especialmente con información sensible. Un análisis de negocio sin implementación carece de controles que verificar."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2025-05-30"
+  reference: "5cf9b032440be53ce345ab3c130fda46ba1ce7a2"
+  date: "2026-11-23"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "Edición estable 5.0.0 publicada el 30 de mayo de 2025, etiqueta v5.0.0_release, licencia y guía de numeración consultadas."
+  pending: ["Aplicación de los criterios a un proyecto piloto."]

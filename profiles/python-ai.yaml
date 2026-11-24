@@ -3,10 +3,15 @@ name: "Python e inteligencia artificial"
 activate_when: "El proyecto tiene código Python para modelos, datos o evaluación."
 stack: ["python","ai"]
 conditions:
+  sentry-en-alcance: "El proyecto ya usa Sentry o ha acordado adoptarlo y la tarea requiere diagnóstico en esa plataforma."
   reglas-abiertas: "Hay una regla de negocio sin confirmar."
   cambio-existente: "La petición modifica comportamiento ya utilizado."
   consulta-publica: "La duda de API admite una consulta pública saneada."
 choices:
+  - id: "sentry-mcp"
+    level: "recommended"
+    when: ["sentry-en-alcance"]
+    reason: "Consultar eventos y trazas del proyecto autorizado cuando el diagnóstico lo requiera."
   - id: "project-bootstrap"
     level: "essential"
     when: []

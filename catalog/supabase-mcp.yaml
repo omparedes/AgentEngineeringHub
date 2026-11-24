@@ -7,28 +7,33 @@ provider: "Supabase"
 license: "Apache-2.0 (implementación)."
 repository: "https://github.com/supabase/mcp"
 docs: "https://supabase.com/docs/guides/ai-tools/mcp"
+entry: "docs/herramientas-ingenieria.md"
 integration: "MCP HTTP"
 technologies: ["supabase","postgresql","auth","rls","rpc"]
 requires_stack: ["supabase"]
-use_cases: ["Contrastar un esquema de desarrollo con una migración local autorizada."]
-requirements: ["Cliente MCP HTTP y autorización de un proyecto de desarrollo."]
+use_cases:
+  - "Contrastar un esquema de desarrollo con la migración local autorizada."
+  - "Inspeccionar el entorno local de ensayo cuando haga falta evidencia de ejecución."
+requirements:
+  - "Cliente MCP HTTP compatible con la autenticación de la modalidad elegida."
+  - "Proyecto de desarrollo autorizado o instancia local con datos sintéticos."
 setup:
   scope: "project"
-  method: "Registrar el endpoint alojado por proyecto. Fijar project_ref, read_only=true y los grupos features necesarios; autorizar por OAuth."
+  method: "Para el servidor alojado, usar project_ref, read_only=true y sólo los grupos features necesarios. Autorizar usando OAuth según la guía. En desarrollo local consultar el endpoint de supabase status."
 agents: ["codex","antigravity"]
-compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
-permissions: "La lectura puede exponer filas y logs. Limitar también el grupo de herramientas y el proyecto."
-alternative: "Migraciones versionadas, fixtures y documentación exportada."
+compatibility: "Supabase publica configuración para Codex y Antigravity. La negociación y herramientas efectivas deben comprobarse en cada modalidad."
+permissions: "read_only limita las consultas SQL a un rol de lectura. El ámbito de proyecto y features reduce herramientas. La lectura puede revelar filas y logs. Conservar las confirmaciones del cliente y evitar instancias productivas."
+alternative: "Migraciones versionadas, fixtures y documentación exportada bastan para diseñar y revisar cambios sin datos remotos."
 depends_on: []
 conflicts_with: []
 review:
   status: "documented"
   upstream:
     archived: false
-    commit_date_utc: "2026-11-19"
-  reference: "43fc508e1ff1315eabbdea435e756df74545720e"
-  date: "2026-11-19"
+    commit_date_utc: "2026-11-23"
+  reference: "03afe8e7a021b13d1611c8b7dc77e1144fa044da"
+  date: "2026-11-23"
   interval_days: 30
   runtime: "untested"
-  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  evidence: "Guía de Supabase y README del commit cotejados para alcance, lectura, grupos y entorno local."
   pending: ["Prueba funcional por cliente, versión y sistema operativo."]

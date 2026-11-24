@@ -7,18 +7,23 @@ provider: "Cloudflare"
 license: "Apache-2.0 (repositorio de servidores)."
 repository: "https://github.com/cloudflare/mcp-server-cloudflare"
 docs: "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/"
+entry: "docs/herramientas-ingenieria.md"
 integration: "MCP HTTP"
 technologies: ["cloudflare","pages","workers"]
 requires_stack: ["cloudflare"]
-use_cases: ["Consultar límites de Pages durante el diseño."]
-requirements: ["Cliente MCP con Streamable HTTP."]
+use_cases:
+  - "Consultar límites y referencias de Pages o Workers antes de elegir una solución."
+  - "Revisar configuración de una cuenta de desarrollo sólo cuando el diagnóstico lo requiera y exista autorización."
+requirements:
+  - "Cliente MCP con Streamable HTTP por /mcp."
+  - "Para la API de cuenta, OAuth o token de permisos mínimos. Los antiguos endpoints /sse del repositorio examinado están retirados."
 setup:
   scope: "project"
-  method: "Añadir sólo https://docs.mcp.cloudflare.com/mcp al cliente del proyecto para consultar documentación. Revisar por separado los servicios de cuenta."
+  method: "Priorizar https://docs.mcp.cloudflare.com/mcp para documentación. Evaluar por separado https://mcp.cloudflare.com/mcp para operaciones de cuenta y revisar el alcance OAuth o Bearer."
 agents: ["codex","antigravity"]
-compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
-permissions: "El servidor API admite cambios según los scopes OAuth. Evitar credenciales de cuenta para consultas públicas."
-alternative: "Documentación pública de Cloudflare."
+compatibility: "Codex y Antigravity son candidatos por transporte. La negociación de los endpoints queda pendiente por cliente."
+permissions: "La API MCP ejecuta operaciones según los permisos otorgados. Mantener credenciales y operaciones de cuenta fuera de consultas documentales. Autorizar cualquier escritura por separado."
+alternative: "Preferir la documentación pública si resuelve la duda. Usar configuración versionada y entorno local cuando la tarea no requiere acceder a la cuenta."
 depends_on: []
 conflicts_with: []
 review:
@@ -27,8 +32,8 @@ review:
     archived: false
     commit_date_utc: "2026-10-22"
   reference: "a21972e219289337731a066befb5c66886b9ce7b"
-  date: "2026-11-19"
+  date: "2026-11-23"
   interval_days: 30
   runtime: "untested"
-  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  evidence: "README del mismo commit y guía del proveedor cotejados. Se mantienen el endpoint documental, Streamable HTTP y la licencia del código. Se distinguió la API de cuenta."
   pending: ["Prueba funcional por cliente, versión y sistema operativo."]

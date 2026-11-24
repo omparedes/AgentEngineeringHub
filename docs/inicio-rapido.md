@@ -36,6 +36,8 @@ python scripts/hub.py show angular-cli-mcp
 python scripts/hub.py recommend business-discovery --agent antigravity
 ```
 
-Resultados esperados para 0.1.0: el validador informa 20 capacidades, cinco perfiles y cuatro skills propias. El filtro devuelve `angular-cli-mcp`; la ficha muestra los límites de lectura del CLI. El último comando selecciona `domain-discovery` antes de `descubrimiento` por su dependencia. No pide tokens.
+Para trabajar desde el chat, empieza con la [guía de v0.2.0](guia-hub.md). El validador informa 29 capacidades, cinco perfiles y cinco skills propias. El filtro devuelve `angular-cli-mcp` y la ficha muestra los límites de lectura del CLI. El último comando selecciona `domain-discovery` antes de `descubrimiento` por su dependencia. Las consultas funcionan con datos locales.
 
 Si el resultado no coincide, comprueba que ejecutaste desde la raíz y que el intérprete pertenece a tu entorno. Un ID mal escrito o una combinación incompatible produce un mensaje en stderr y código de salida distinto de cero. Continúa con los [ejemplos completos](../examples/escenarios.md).
+
+Si estás iniciando un producto, aplica [nuevo proyecto con Domain-First Agile Engineering](../workflows/nuevo-proyecto.md) a partir de la propuesta de `project-bootstrap`.

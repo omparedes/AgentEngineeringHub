@@ -1,0 +1,39 @@
+id: "lighthouse-ci"
+name: "Lighthouse CI"
+summary: "Automatiza auditorías Lighthouse y compara presupuestos de rendimiento, accesibilidad, buenas prácticas y SEO."
+type: "tool"
+origin: "official"
+provider: "Google Chrome"
+license: "Apache-2.0 para el código de Lighthouse CI."
+repository: "https://github.com/GoogleChrome/lighthouse-ci"
+docs: "https://googlechrome.github.io/lighthouse-ci/"
+entry: "docs/herramientas-ingenieria.md"
+integration: "CLI de recolección y presupuestos de calidad en local o CI"
+technologies: ["web","performance","accessibility","seo","testing","ci"]
+requires_stack: ["web"]
+use_cases:
+  - "Medir páginas públicas o sintéticas con varias corridas comparables."
+  - "Fallar una verificación de CI cuando se incumpla un presupuesto Lighthouse acordado."
+requirements:
+  - "Node.js >=22.19.0 para @lhci/cli 0.16.1 según npm."
+  - "Chrome o Chromium accesible y páginas de ensayo reproducibles."
+setup:
+  scope: "project"
+  method: "Fijar @lhci/cli como dependencia de desarrollo en el consumidor. Configurar collect y assert en lighthouserc. Ejecutar en local o como paso de una CI autorizada con informes privados."
+agents: ["codex","antigravity"]
+compatibility: "Ejecutable del consumidor invocable por un agente o runner. Configuración local y CI documentadas; ejecución pendiente."
+permissions: "El informe puede revelar URLs o capturas. Elegir salida local o artefactos autorizados. temporary-public-storage publica informes accesibles por enlace."
+alternative: "DevTools para investigar trazas y cuellos concretos. Playwright Test para recorridos funcionales. Métricas de campo para experiencia real. Recomendar cuando el proyecto acuerde auditorías reproducibles o presupuestos sobre una página medible. Usar DevTools si sólo se necesita una traza de diagnóstico."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-17"
+  reference: "947c5790b8e2c29259c65a6cfebfb89432555bc8"
+  date: "2026-11-23"
+  interval_days: 90
+  runtime: "untested"
+  evidence: "Sitio de Lighthouse CI, guía de inicio del commit indicado, configuración y manifiesto npm 0.16.1 consultados."
+  pending: ["Ejecución de una prueba en un proyecto consumidor sintético."]

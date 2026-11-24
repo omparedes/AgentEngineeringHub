@@ -7,28 +7,33 @@ provider: "Chrome DevTools"
 license: "Apache-2.0"
 repository: "https://github.com/ChromeDevTools/chrome-devtools-mcp"
 docs: "https://developer.chrome.com/docs/devtools/agents"
+entry: "docs/herramientas-ingenieria.md"
 integration: "MCP stdio"
 technologies: ["web","chrome","javascript"]
 requires_stack: ["web"]
-use_cases: ["Diagnosticar recursos lentos con un perfil de navegador de prueba."]
-requirements: ["Chrome compatible y Node LTS para el servidor npm."]
+use_cases:
+  - "Diagnosticar peticiones, errores de consola y trazas de una página de prueba."
+  - "Repetir diagnósticos por terminal con Chrome DevTools CLI y la skill chrome-devtools-cli."
+requirements:
+  - "Chrome compatible y Node LTS admitido. El manifiesto npm 1.13.0 declara ^20.19.0, ^22.12.0 o >=23."
+  - "Perfil de navegador y datos sintéticos."
 setup:
   scope: "project"
   method: "Añadir chrome-devtools-mcp con versión revisada como dependencia de desarrollo del proyecto y configurar su binario en stdio."
 agents: ["codex","antigravity"]
-compatibility: "Candidata por soporte del transporte MCP. La negociación cliente-servidor queda pendiente."
-permissions: "El navegador puede revelar cookies, peticiones y contenido privado. Usar perfil aislado y revisar telemetría."
-alternative: "Panel Performance y Network de Chrome DevTools."
+compatibility: "El proveedor documenta Codex y Antigravity. MCP y CLI son superficies del mismo producto. Negociación y ejecución pendientes."
+permissions: "Chrome puede exponer cookies, peticiones y contenido privado. Usar un perfil aislado, evitar la sesión personal y revisar --no-usage-statistics para MCP."
+alternative: "Usar DevTools manual si ya se dispone de la traza. Playwright Test cubre regresiones repetibles y Lighthouse CI cubre presupuestos. El CLI permite repetir diagnósticos sin registrar un servidor."
 depends_on: []
 conflicts_with: []
 review:
   status: "documented"
   upstream:
     archived: false
-    commit_date_utc: "2026-11-19"
-  reference: "bdecb63549a0b1a6d073fdf69ecc264bf46adda9"
-  date: "2026-11-19"
+    commit_date_utc: "2026-11-23"
+  reference: "02b146bb562e6d2c454af12e70a2ef7ae2422db1"
+  date: "2026-11-23"
   interval_days: 30
   runtime: "untested"
-  evidence: "README en el commit indicado y documentación del proveedor consultados. Referencia del código independiente de la versión del servicio."
+  evidence: "README del commit, documentación oficial de MCP, CLI y skill y manifiesto npm 1.13.0 cotejados."
   pending: ["Prueba funcional por cliente, versión y sistema operativo."]

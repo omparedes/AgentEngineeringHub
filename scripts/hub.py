@@ -16,6 +16,21 @@ ROOT = Path(__file__).resolve().parents[1]
 AGENTS = ("codex", "antigravity")
 LEVELS = {"essential": "esencial", "recommended": "recomendada",
           "optional": "opcional", "not-applicable": "no aplicable"}
+TOOL_EVIDENCE = {
+    "uso-verificado": "instalada-y-operativa",
+    "falta-configuracion-confirmada": "instalada-sin-configurar",
+    "configuracion-observada": "configurada-sin-verificar",
+    "ausencia-confirmada": "no-instalada",
+    "incompatibilidad-confirmada": "incompatible",
+    "sin-evidencia": "desconocido",
+}
+APPROVED_TOOL_STEPS = {
+    "instalada-y-operativa": "reutilizar-en-el-alcance-aprobado",
+    "instalada-sin-configurar": "proponer-configuracion",
+    "configurada-sin-verificar": "proponer-verificacion",
+    "no-instalada": "proponer-instalacion",
+    "desconocido": "obtener-evidencia-antes-de-actuar",
+}
 
 
 class Invalid(ValueError):
@@ -91,6 +106,44 @@ def check(validator, data, path):
     error = next(validator.iter_errors(data), None)
     if error:
         raise Invalid(f"{path} {error.json_path}: {error.message}")
+
+
+def load_project_tools(path):
+    try:
+        data = parse(path)
+    except (Invalid, OSError) as exc:
+        raise Invalid("No se pudo leer el manifiesto de herramientas como YAML o JSON.") from exc
+    error = next(contract("project-tools").iter_errors(data), None)
+    if error:
+        # Un valor rechazado puede contener información privada.
+        raise Invalid(f"El manifiesto de herramientas no cumple el contrato ({error.validator}).")
+    return data
+
+
+def tool_plan(decisions, tools, observations):
+    """Cruza decisiones vigentes con evidencia del harness actual."""
+    if any(not re.fullmatch(r"[a-z0-9]+(-[a-z0-9]+)*", tool) or len(tool) > 64 for tool in tools):
+        raise Invalid("Cada herramienta debe identificarse con un ID válido.")
+    if observations.keys() - set(tools) or set(observations.values()) - TOOL_EVIDENCE.keys():
+        raise Invalid("La evidencia debe corresponder a una herramienta solicitada y a un tipo reconocido.")
+
+    rows = []
+    for tool in dict.fromkeys(tools):
+        decision = decisions.get(tool, {})
+        selection = decision.get("seleccion")
+        state = TOOL_EVIDENCE[observations.get(tool, "sin-evidencia")]
+        if selection in {"posponer", "omitir"}:
+            step = {"posponer": "mantener-pospuesta", "omitir": "mantener-omitida"}[selection]
+        elif state == "incompatible":
+            step = "descartar-por-incompatibilidad"
+        elif selection == "utilizar":
+            step = APPROVED_TOOL_STEPS[state]
+        else:
+            step = "esperar-seleccion"
+        rows.append({"herramienta": tool, "seleccion": selection, "estado": state,
+                     "alcance_elegido": decision.get("alcance"), "ubicacion_elegida": decision.get("ubicacion"),
+                     "siguiente_paso": step, "requiere_autorizacion_especifica": step.startswith("proponer-")})
+    return rows
 
 
 def records(root, folder, kind):
@@ -245,6 +298,11 @@ def validate(root, caps, profiles):
         # siempre los contratos que acompañan al ejecutable de confianza.
         for name in ("capability", "profile", "skill"):
             contract(name, root)
+    project_tools_example = root / "templates/herramientas-proyecto.yaml"
+    if root == ROOT or (root / "schemas/project-tools.schema.json").exists() or project_tools_example.exists():
+        if root != ROOT:
+            contract("project-tools", root)
+        load_project_tools(local(root, project_tools_example))
     graph(caps)
     if caps.keys() & profiles.keys():
         raise Invalid("Un perfil y una capacidad comparten ID")
@@ -275,9 +333,24 @@ def main(argv=None):
     rec.add_argument("--agent", choices=AGENTS, default="codex")
     rec.add_argument("--context", action="append", default=[])
     rec.add_argument("--include", action="append", default=[])
+    tool_review = sub.add_parser("tools-plan", help="consultar decisiones con evidencia actual, sin escribir")
+    tool_review.add_argument("--manifest", type=Path, help="manifiesto de decisiones del proyecto")
+    tool_review.add_argument("--tool", action="append", default=[], help="ID pertinente de la herramienta")
+    tool_review.add_argument("--observed", action="append", default=[], metavar="ID=EVIDENCIA",
+                             help="evidencia de esta sesión, nunca una observación histórica")
     args = parser.parse_args(argv)
     root = args.root.resolve()
     try:
+        if args.command == "tools-plan":
+            decisions = load_project_tools(args.manifest)["decisiones"] if args.manifest is not None else {}
+            evidence = {}
+            for observation in args.observed:
+                tool, equals, signal = observation.partition("=")
+                if not equals or tool in evidence:
+                    raise Invalid("Usa ID=EVIDENCIA una sola vez por herramienta.")
+                evidence[tool] = signal
+            print(json.dumps(tool_plan(decisions, args.tool, evidence), ensure_ascii=False, indent=2))
+            return 0
         caps = records(root, "catalog", "capability")
         if args.command == "list":
             for cap in caps.values():
@@ -302,6 +375,7 @@ def main(argv=None):
             selected, skipped = select(profile, caps, args.agent, args.context, args.include)
             rows = {row["id"]: row for row in profile["choices"]}
             print(f"Propuesta local | {args.profile} | {args.agent}")
+            print("Condiciones activas: " + (", ".join(sorted(set(args.context))) or "ninguna"))
             for key, reason in selected.items():
                 print(f"  + {key} [{LEVELS[rows[key]['level']]}] {reason}")
                 if caps[key]["requirements"]:

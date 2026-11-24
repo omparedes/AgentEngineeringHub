@@ -23,9 +23,9 @@ Este control negativo debe terminar con código 1 y la razón `no aplicable`. Co
 
 ## Qué prueba GitHub Actions
 
-La [CI](../.github/workflows/validate.yml) se activa en PR y en push a main. En PR obtiene la base por SHA y el árbol combinado del cambio en directorios distintos. Ejecuta scripts y tests de la base revisada, y aplica ese validador a los datos propuestos. No importa módulos Python de la contribución. El checkout oficial está fijado por SHA, el token tiene lectura y se descartan sus credenciales. El runner instala los paquetes Python firmados de Ubuntu. El workflow no establece sesiones MCP ni despliega.
+La [CI](../.github/workflows/validate.yml) se activa al abrir, actualizar o reabrir un PR y al publicar un commit en `main` o una rama candidata `release/v*-rc.*` de este repositorio. En PR obtiene por separado la base revisada y el árbol combinado. Ejecuta scripts y tests de la base y valida los datos propuestos. El checkout oficial está fijado por SHA, el token tiene lectura y se descartan sus credenciales. El runner instala los paquetes Python firmados de Ubuntu.
 
-Los cambios a scripts, esquemas, pruebas o CI requieren revisión de código. Antes de integrar, un mantenedor puede ejecutar la suite de la propuesta en un entorno desechable tras revisarla. El push a main ejecuta la suite de la versión integrada. Activa en GitHub la aprobación de workflows de colaboradores externos y protege main con revisión del PR y el check `validate`. Estas opciones del alojamiento requieren que exista el remoto.
+El push a una rama candidata ejecuta su propia suite y el push a `main` ejecuta la suite integrada. Reserva los pushes a ramas de release para cambios ya revisados por mantenedores. La ejecución del PR mantiene los scripts de la base separados de los datos aportados. Antes de cerrar una release, comprueba en Actions el evento, el SHA auditado, el resultado de los pasos y que el PR corresponde a esa revisión.
 
 ## Ensayos de comportamiento
 

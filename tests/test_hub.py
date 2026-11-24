@@ -38,6 +38,69 @@ class CatalogTests(unittest.TestCase):
         chosen, _ = hub.select(p, self.caps, "codex", ["inspeccion-remota"], ["supabase-mcp"])
         self.assertIn("supabase-mcp", chosen)
 
+    def test_modern_web_guidance_requires_frontend_work(self):
+        capability = "modern-web-guidance"
+        frontend_profiles = ("generic-web", "angular-frontend", "angular-supabase-cloudflare")
+        for agent in hub.AGENTS:
+            for profile_id, profile in self.profiles.items():
+                with self.subTest(profile=profile_id, agent=agent):
+                    default, _ = hub.select(profile, self.caps, agent)
+                    self.assertNotIn(capability, default)
+                    if profile_id in frontend_profiles:
+                        selected, _ = hub.select(profile, self.caps, agent, ["trabajo-frontend"])
+                        self.assertIn(capability, selected)
+                    else:
+                        self.assertNotIn(capability, {choice["id"] for choice in profile["choices"]})
+
+    def test_engineering_capabilities_follow_confirmed_context(self):
+        web_profiles = {"generic-web", "angular-frontend", "angular-supabase-cloudflare"}
+        app_profiles = web_profiles - {"angular-frontend"}
+        criteria = {
+            "nextjs-16-dev": ("next-devtools-mcp", {"generic-web"}),
+            "auditoria-accesibilidad": ("axe-core-playwright", web_profiles),
+            "presupuesto-lighthouse": ("lighthouse-ci", web_profiles),
+            "seguridad-aplicacion": ("owasp-asvs", app_profiles),
+            "sentry-en-alcance": ("sentry-mcp", app_profiles | {"python-ai"}),
+            "diseno-figma": ("figma-mcp", web_profiles),
+        }
+        additions = {capability for capability, _ in criteria.values()} | {"filesystem-mcp"}
+        for profile_id, profile in self.profiles.items():
+            for agent in hub.AGENTS:
+                with self.subTest(profile=profile_id, agent=agent):
+                    default, _ = hub.select(profile, self.caps, agent)
+                    self.assertFalse(additions & default.keys())
+                    for context, (capability, eligible) in criteria.items():
+                        if profile_id in eligible:
+                            selected, _ = hub.select(profile, self.caps, agent, [context])
+                            self.assertEqual(set(selected) - default.keys(), {capability})
+                        else:
+                            with self.assertRaises(hub.Invalid):
+                                hub.select(profile, self.caps, agent, [context])
+                    profile_options = {choice["id"] for choice in profile["choices"]}
+                    self.assertNotIn("filesystem-mcp", profile_options)
+                    if profile_id != "generic-web":
+                        self.assertNotIn("next-devtools-mcp", profile_options)
+
+    def test_axe_and_lighthouse_can_run_without_browser_mcp(self):
+        for capability in ("axe-core-playwright", "lighthouse-ci"):
+            with self.subTest(capability=capability):
+                self.assertEqual(self.caps[capability]["type"], "tool")
+                self.assertEqual(self.caps[capability]["depends_on"], [])
+        asvs = self.caps["owasp-asvs"]
+        self.assertEqual((asvs["type"], asvs["setup"]["scope"]), ("rule", "none"))
+
+    def test_playwright_mcp_requires_explicit_selection(self):
+        for profile_id in ("angular-frontend", "angular-supabase-cloudflare", "generic-web"):
+            with self.subTest(profile=profile_id):
+                profile = self.profiles[profile_id]
+                selected, _ = hub.select(profile, self.caps, "codex", ["prueba-navegacion"])
+                self.assertNotIn("playwright-mcp", selected)
+                with self.assertRaises(hub.Invalid):
+                    hub.select(profile, self.caps, "codex", include=["playwright-mcp"])
+                selected, _ = hub.select(profile, self.caps, "codex", ["prueba-navegacion"],
+                                         ["playwright-mcp"])
+                self.assertIn("playwright-mcp", selected)
+
     def test_invalid_selections(self):
         p = self.profiles["angular-frontend"]
         for conditions, ids in [([], ["supabase-mcp"]), ([], ["angular-cli-mcp"]),
@@ -133,9 +196,35 @@ class CatalogTests(unittest.TestCase):
 
     def test_rpc_with_existing_hosting(self):
         chosen, _ = hub.select(self.profiles["angular-supabase-cloudflare"], self.caps, "codex",
-                               ["cambio-existente", "cambio-sql"])
+                               ["trabajo-frontend", "cambio-existente", "cambio-sql"])
         self.assertEqual(set(chosen), {"project-bootstrap", "angular-skills", "change-impact-analysis",
-                                       "supabase-skills", "cambio-controlado"})
+                                       "supabase-skills", "cambio-controlado", "modern-web-guidance"})
+
+    def test_sql_maintenance_excludes_frontend_and_prototyping(self):
+        profile = self.profiles["angular-supabase-cloudflare"]
+        for agent in hub.AGENTS:
+            with self.subTest(agent=agent):
+                chosen, _ = hub.select(profile, self.caps, agent, ["cambio-existente", "cambio-sql"])
+                self.assertEqual(set(chosen), {"project-bootstrap", "change-impact-analysis",
+                                               "supabase-skills", "cambio-controlado"})
+
+    def test_stitch_is_a_tool_with_context_and_explicit_inclusion(self):
+        self.assertEqual(self.caps["google-stitch"]["type"], "tool")
+        web_profiles = {"angular-frontend", "angular-supabase-cloudflare", "generic-web"}
+        for profile_id, profile in self.profiles.items():
+            for agent in hub.AGENTS:
+                with self.subTest(profile=profile_id, agent=agent):
+                    with self.assertRaises(hub.Invalid):
+                        hub.select(profile, self.caps, agent, include=["google-stitch"])
+                    if profile_id in web_profiles:
+                        context = ["prototipado-visual"]
+                        proposal, _ = hub.select(profile, self.caps, agent, context)
+                        self.assertNotIn("google-stitch", proposal)
+                        requested, _ = hub.select(profile, self.caps, agent, context, ["google-stitch"])
+                        self.assertEqual(set(requested) - proposal.keys(), {"google-stitch"})
+                    else:
+                        with self.assertRaises(hub.Invalid):
+                            hub.select(profile, self.caps, agent, ["prototipado-visual"])
 
     def test_date_validation(self):
         cap = copy.deepcopy(self.caps["context7"])
@@ -186,7 +275,10 @@ class CatalogTests(unittest.TestCase):
                 (["list", "--tech", "angular", "--type", "mcp"], 0, "angular-cli-mcp"),
                 (["profiles"], 0, "python-ai"),
                 (["show", "codex-skill-evals"], 0, "cli-help-checked"),
-                (["recommend", "generic-web", "--agent", "antigravity"], 0, "modern-web-guidance"),
+                (["recommend", "generic-web", "--agent", "antigravity", "--context", "trabajo-frontend"],
+                 0, "  + modern-web-guidance"),
+                (["recommend", "angular-supabase-cloudflare", "--context", "cambio-sql",
+                  "--context", "cambio-existente"], 0, "Condiciones activas: cambio-existente, cambio-sql"),
                 (["recommend", "ausente"], 1, "desconocido"),
             ]:
                 with self.subTest(args=args):

@@ -1,0 +1,38 @@
+id: "filesystem-mcp"
+name: "Filesystem MCP"
+summary: "Expone lectura, búsqueda y metadatos de archivos. Las configuraciones de escritura también permiten crear, editar y mover archivos."
+type: "mcp"
+origin: "official"
+provider: "Proyecto Model Context Protocol"
+license: "MIT según el README del servidor Filesystem en la revisión consultada."
+repository: "https://github.com/modelcontextprotocol/servers"
+docs: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
+entry: "docs/herramientas-ingenieria.md"
+integration: "Servidor local de archivos, preferentemente MCP stdio"
+technologies: ["filesystem","mcp","tooling"]
+requires_stack: []
+use_cases:
+  - "Compartir un árbol de prueba específico cuando el cliente carece de acceso nativo suficiente."
+requirements:
+  - "Node.js >=24 para @modelcontextprotocol/server-filesystem 2.4.0, o la imagen local aprobada."
+  - "Directorio existente con permisos del sistema operativo acotados al proyecto."
+setup:
+  scope: "project"
+  method: "Registrar @modelcontextprotocol/server-filesystem en versión revisada por stdio con un directorio de ensayo concreto. Usar --read-only y --confine-roots cuando estén disponibles y verificar los directorios efectivos."
+agents: ["codex","antigravity"]
+compatibility: "Candidato por stdio en ambos agentes. El comportamiento de Roots y el alcance efectivo requieren prueba por cliente."
+permissions: "Los directorios de arranque y los Roots declarados por el cliente afectan el alcance. Limitar ambos y evitar directorios personales, credenciales y árboles productivos. Las herramientas de escritura operan con los permisos del proceso."
+alternative: "El acceso nativo y el sandbox de Codex o Antigravity suelen cubrir el workspace. Preferirlos cuando sean suficientes. Consultar la ficha sólo ante una carencia concreta de acceso. Ningún perfil activo lo incluye automáticamente."
+depends_on: []
+conflicts_with: []
+review:
+  status: "documented"
+  upstream:
+    archived: false
+    commit_date_utc: "2026-11-18"
+  reference: "c799c8552b0f27b7a33a7b9233773da144dddcf5"
+  date: "2026-11-23"
+  interval_days: 30
+  runtime: "untested"
+  evidence: "README del servidor y manifiesto npm 2.4.0 consultados. Restricciones de directorios y modos de lectura documentados."
+  pending: ["Ensayo de alcance y negociación con cada cliente en un proyecto sintético."]
