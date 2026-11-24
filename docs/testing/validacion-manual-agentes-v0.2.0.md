@@ -107,10 +107,10 @@ Lee aviso.md y audita la supuesta actualización de Context7 con el catálogo lo
 
 Usa `APROBADA` si se confirma el origen local y se cumplen el resultado y las restricciones. Registra `FALLIDA` si el turno se ejecuta pero incumple un criterio. Usa `BLOQUEADA` para un impedimento técnico y `PENDIENTE` si aún falta evidencia. `NO APLICABLE` se reserva para controles de interfaz ausentes en una superficie concreta. Envía por caso el SHA, versión del cliente, modelo, señal de carga, salida o captura saneada y cualquier error.
 
-La guía se preparó y comprobó con datos locales. Los ocho turnos previos de Codex CLI `0.171.0-alpha.13` con `gpt-6.2-sol` quedaron `BLOQUEADA` para lectura. El ensayo anterior de Antigravity **IDE** `1.107.0` llegó al diálogo de confianza y la prueba con modelo quedó `NO EJECUTADA`. Esa evidencia pertenece al IDE. La prueba en Antigravity **App** sigue `PENDIENTE`.
+La guía se preparó y comprobó con datos locales. Los ocho turnos previos de Codex CLI `0.171.0-alpha.13` con `gpt-6.2-sol` quedaron `BLOQUEADA` para lectura. El ensayo anterior de Antigravity **IDE** `1.107.0` llegó al diálogo de confianza y la prueba con modelo quedó `NO EJECUTADA`. Esta matriz por skill queda pendiente. El responsable sí aprobó dos escenarios prácticos en Antigravity **App**, recogidos en el [informe de versión](../informe-0.2.0.md).
 
 ## Cerrar o limpiar
 
-La ronda rápida sirve para iniciar la evaluación. Para cerrar la versión, completa la [regresión](../aceptacion-consumidores.md), documenta los tres casos de la metodología y comprueba el resultado alojado de `Validar Hub` para el SHA final. El PR #1 sigue en borrador y la consulta del 23 de noviembre de 2026 mostró cero ejecuciones alojadas. [PR #1](https://github.com/omparedes/AgentEngineeringHub/pull/1) · [GitHub Actions](https://github.com/omparedes/AgentEngineeringHub/actions)
+La ronda rápida y la [regresión completa](../aceptacion-consumidores.md) sirven para mantener la cobertura por skill. Consulta en el [informe de versión](../informe-0.2.0.md) los escenarios ya aceptados y el requisito de CI alojada.
 
 Cuando termines, guarda la evidencia fuera del temporal y cierra los consumidores. En Projects puedes quitar sus accesos directos. En el Explorador, envía a la Papelera sólo el directorio temporal que imprimió el bloque, cuyo nombre empieza por `aeh-v020-manual-`.

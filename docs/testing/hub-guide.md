@@ -1,6 +1,6 @@
 # Ensayar hub-guide
 
-Esta matriz corresponde a la propuesta para v0.3.0. La [validación manual de v0.2.0](validacion-manual-agentes-v0.2.0.md) sigue evaluando las cuatro skills de esa candidata.
+Esta matriz sirve para ensayar `hub-guide` en la versión consolidada. La [prueba rápida](validacion-manual-agentes-v0.2.0.md) cubre las cuatro skills anteriores. El [informe de v0.2.0](../informe-0.2.0.md) distingue los escenarios aprobados por el responsable de las regresiones aún pendientes.
 
 ## Preparación
 
@@ -76,6 +76,7 @@ El primer comando propone reutilizar GitHub y verificar Supabase con autorizaci�
 | Decisiones, evidencia actual, validación del manifiesto y consultas de sólo lectura | Diez pruebas sintéticas de `test_project_tools.py` aprobadas dentro de la suite local. |
 | Descubrimiento con Codex CLI `0.171.0-alpha.13` | BLOQUEADA. El proceso local terminó antes de responder a la consulta de metadatos. No se ejecutó un turno con modelo. |
 | Descubrimiento y tres turnos en Codex Desktop y Antigravity App | PENDIENTE de capturas y respuesta de cada cliente. |
+| Preparación del entorno y revisión de un proyecto existente en Antigravity App | ACEPTADAS por el responsable. La evidencia recibida describe el flujo observado y no identifica la invocación de una skill concreta. |
 | Primera preparación completa en un equipo recién configurado | PENDIENTE de un recorrido manual, incluido el descubrimiento tras la instalación de usuario. |
 | Informe, diálogo de aprobación y persistencia por parte del agente | PENDIENTE de los ensayos manuales en Codex Desktop y Antigravity App. |
 

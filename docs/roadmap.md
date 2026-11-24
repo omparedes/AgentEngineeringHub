@@ -4,23 +4,17 @@
 
 Catálogo consultable, selección offline, cuatro skills originales, dos procedimientos de ingeniería, cinco perfiles y revisión por Issue y PR. Los contratos delimitan lo que puede validar automáticamente una herramienta; las fichas conservan la evidencia documental y los límites por recurso.
 
-## 0.2.0-rc.1 en revisión
+## Alcance de 0.2.0
 
-Consolida el catálogo ampliado y [Domain-First Agile Engineering](metodologia/domain-first-agile-engineering.md). Conserva cinco perfiles y cuatro skills propias. La candidata separa la validación local del Hub del ensayo funcional de clientes externos.
+Consolida 29 capacidades, cinco perfiles, cinco skills propias y [Domain-First Agile Engineering](metodologia/domain-first-agile-engineering.md). Incluye [hub-guide](guia-hub.md) para preparar el equipo, revisar un proyecto y conservar decisiones de herramientas. El [informe de versión](informe-0.2.0.md) recoge la aceptación de dos escenarios en Antigravity App y el requisito de GitHub Actions para la publicación.
 
-## Cierre propuesto de 0.2.0
+## Mantenimiento posterior
 
 | Prioridad propuesta | Trabajo | Evidencia de cierre |
 | --- | --- | --- |
-| 1 | Ejecutar las [pruebas manuales de consumidores](testing/validacion-manual-agentes-v0.2.0.md) en Codex y Antigravity | Tabla de cliente, versión, referencia, prompt, resultado y fecha. |
+| 1 | Ampliar las [pruebas de consumidores](testing/validacion-manual-agentes-v0.2.0.md) y de [hub-guide](testing/hub-guide.md) al cambiar el cliente, el modelo o las instrucciones | Tabla de cliente, versión, referencia, prompt, resultado y fecha. |
 | 2 | Probar un MCP local de lectura y después uno remoto de documentación bajo autorización | Transporte negociado y herramientas expuestas frente a permisos previstos. |
 | 3 | Ensayar un prototipo sintético y su traspaso desde Stitch y comprobar el alcance de Figma si se autoriza | Versión del prototipo, `DESIGN.md` o exportación revisada y permisos observables por cliente. |
 | 4 | Revisar licencias pendientes y cambios de versiones | Issue por discrepancia y decisión enlazada al commit revisado. |
 
-Antes de cerrar 0.2.0, revisa los resultados pendientes, confirma los cambios y comprueba la CI alojada cuando exista una publicación autorizada. La detección periódica de referencias y la medición de utilidad de perfiles pueden seguir como mejoras posteriores.
-
 Añadir soporte específico para otro agente requerirá evidencia de descubrimiento, alcance de instalación e invocación. Una interfaz web, backend, base de datos o marketplace se evaluarán si la experiencia de uso demuestra una necesidad concreta.
-
-## Propuesta para v0.3.0
-
-Probar [la entrada única con hub-guide](guia-hub.md) en Codex Desktop y Antigravity App. La publicación depende de una prueba en un equipo limpio y de validar las tres operaciones con un catálogo local. Comprueba que el informe preceda a la selección, que los cambios requieran autorización específica y que las decisiones se conserven al cambiar de entorno.

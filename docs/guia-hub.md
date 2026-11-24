@@ -10,7 +10,7 @@ Usa https://github.com/omparedes/AgentEngineeringHub para preparar mi equipo. Qu
 
 El agente puede usar la URL para identificar la publicación estable y proponer un destino local. La opción reutilizable instala una sola skill de usuario y guarda la ubicación del checkout en su propia carpeta. Una vez disponible, inicia las conversaciones nuevas con las instrucciones siguientes. [Publicaciones y etiquetas del Hub](https://github.com/omparedes/AgentEngineeringHub/releases)
 
-**Estado de esta propuesta.** `hub-guide` está en desarrollo para una versión posterior a v0.2.0. La edición estable actual, `v0.1.0`, ofrece [sus procedimientos de agentes](https://github.com/omparedes/AgentEngineeringHub/blob/v0.1.0/docs/agentes.md). Úsala mientras llega una edición aprobada que incluya `hub-guide`.
+`hub-guide` forma parte del alcance de v0.2.0. Mientras la etiqueta estable aún esté pendiente, `v0.1.0` ofrece [sus procedimientos de agentes](https://github.com/omparedes/AgentEngineeringHub/blob/v0.1.0/docs/agentes.md). Consulta el [estado de publicación](informe-0.2.0.md) antes de elegir la referencia.
 
 ## Para trabajar
 
